@@ -1,0 +1,280 @@
+/* Requested fixes for v18 */
+
+/* Nærkontakt mobile: remove the outer background box so the page matches the other mobile pages */
+@media (max-width: 768px) {
+  #instruction .instruction-layout {
+    background: transparent !important;
+    border: 0 !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+    padding: 0 !important;
+  }
+}
+
+/* Indberet: cross-fade from the original image to the supplied black-and-white version on hover */
+#register .register-archive-photo {
+  position: relative !important;
+  aspect-ratio: 1 / 1 !important;
+  overflow: hidden !important;
+  isolation: isolate !important;
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  border-radius: 24px !important;
+}
+
+#register .register-archive-photo::before {
+  display: none !important;
+  content: none !important;
+}
+
+#register .register-archive-photo img {
+  display: block !important;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  object-position: center !important;
+  aspect-ratio: auto !important;
+  border-radius: inherit !important;
+  filter: none !important;
+  background: transparent !important;
+  transition: opacity 320ms ease !important;
+}
+
+#register .register-archive-photo::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: url('../img/arkiv-foto-sort-hvid.png') center / cover no-repeat;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 320ms ease;
+}
+
+#register .register-archive-photo:hover img,
+#register .register-archive-photo:focus-within img {
+  opacity: 0;
+}
+
+#register .register-archive-photo:hover::after,
+#register .register-archive-photo:focus-within::after {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #register .register-archive-photo img,
+  #register .register-archive-photo::after {
+    transition: none !important;
+  }
+}
+
+
+/* ===== v23: Nærkontakt info-panel fade animation ===== */
+#instruction .text-panel,
+#instruction .info-box {
+  visibility: visible;
+}
+
+#instruction .text-panel.fadeIn,
+#instruction .info-box.fadeIn {
+  animation: vaultInfoFadeIn 0.45s ease both;
+}
+
+@keyframes vaultInfoFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #instruction .text-panel.fadeIn,
+  #instruction .info-box.fadeIn {
+    animation: none !important;
+  }
+}
+
+
+/* README / dokumentationsvisning */
+#readme-page main {
+  width: min(1120px, calc(100% - 2rem));
+  margin: 0 auto;
+}
+
+.readme-intro {
+  margin-top: 1.25rem;
+}
+
+.readme-layout {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.25rem;
+  margin: 0 0 2rem;
+}
+
+.readme-summary {
+  grid-column: 1 / -1;
+}
+
+.readme-panel h2,
+.readme-summary h2 {
+  margin-bottom: 0.9rem;
+}
+
+.readme-checklist,
+.readme-list {
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0 0;
+}
+
+.readme-checklist li,
+.readme-list li {
+  padding: 0.8rem 0;
+  border-top: 1px solid rgba(184, 242, 152, 0.12);
+  color: var(--muted);
+}
+
+.readme-checklist li:first-child,
+.readme-list li:first-child {
+  border-top: 0;
+  padding-top: 0;
+}
+
+.readme-list li {
+  display: grid;
+  gap: 0.25rem;
+}
+
+.readme-list strong {
+  color: var(--accent-2);
+  font-size: 1rem;
+}
+
+#readme-page code {
+  color: var(--accent-2);
+  font-family: var(--mono-font, monospace);
+}
+
+@media (max-width: 820px) {
+  .readme-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* v29 request: 404 documentation cards use the new palette from the supplied references */
+#readme-page .page-intro::before,
+#readme-page .readme-summary::before,
+#readme-page .readme-panel::before {
+  display: none !important;
+  content: none !important;
+}
+
+#readme-page .eyebrow,
+#readme-page .readme-kicker,
+#readme-page .readme-intro-meta {
+  display: block;
+  margin: 0 0 0.95rem;
+  font: 700 0.72rem/1 var(--body-font, Arial, Helvetica, sans-serif);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #d2cd96 !important;
+}
+
+#readme-page .readme-intro-meta {
+  margin-bottom: 1.4rem;
+  font-size: 0.84rem;
+  letter-spacing: 0.16em;
+}
+
+#readme-page h1,
+#readme-page .readme-panel h2,
+#readme-page .readme-summary h2 {
+  color: #dfe5a6 !important;
+}
+
+#readme-page .page-intro h1 {
+  font-size: clamp(3.5rem, 8vw, 7rem) !important;
+  line-height: 0.92 !important;
+  margin-bottom: 1rem !important;
+}
+
+#readme-page .subheading,
+#readme-page .readme-summary p,
+#readme-page .readme-panel p,
+#readme-page .readme-list li,
+#readme-page .readme-panel li {
+  color: #f3efe6 !important;
+}
+
+#readme-page .readme-checklist li,
+#readme-page .readme-summary li {
+  color: #d2cd96 !important;
+}
+
+#readme-page .subheading {
+  font-size: clamp(1.05rem, 1.6vw, 1.45rem) !important;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  line-height: 1.45;
+  max-width: 100%;
+}
+
+#readme-page .page-intro {
+  padding: 1.7rem 2rem 2.2rem !important;
+}
+
+#readme-page .readme-checklist li,
+#readme-page .readme-list li {
+  border-top-color: rgba(232, 225, 206, 0.18) !important;
+}
+
+#readme-page .readme-panel h2,
+#readme-page .readme-summary h2 {
+  margin-top: 0;
+}
+
+#readme-page code {
+  color: #dfe5a6 !important;
+}
+
+@media (max-width: 820px) {
+  #readme-page .page-intro h1 {
+    font-size: clamp(2.6rem, 11vw, 4.8rem) !important;
+  }
+
+  #readme-page .subheading {
+    letter-spacing: 0.08em;
+  }
+}
+
+/* v30 request: ensure all 404 section kickers match the header yellow exactly */
+#readme-page .eyebrow,
+#readme-page .readme-kicker,
+#readme-page .readme-intro-meta {
+  color: var(--warning) !important;
+  -webkit-text-fill-color: var(--warning) !important;
+  opacity: 1 !important;
+}
+
+/* v32 request: move dropdown arrow left and replace with a softer chevron while keeping the existing accent color */
+#register select {
+  -webkit-appearance: none;
+  appearance: none;
+  padding-right: 3rem;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='10' viewBox='0 0 18 10' fill='none'%3E%3Cpath d='M2 1.5L9 8.5L16 1.5' stroke='%23d9e2a7' stroke-width='2.1' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-size: 16px 9px;
+  background-position: right 1.15rem center;
+}
+
+#register select::-ms-expand {
+  display: none;
+}
+

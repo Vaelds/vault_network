@@ -1,0 +1,312 @@
+/* Layout er samlet i custom.css for at holde projektet overskueligt */
+
+.site-footer { border-top: 4px solid #000; }
+
+
+
+/* ABSOLUTE FINAL FIX - FORCE SAND FOOTER */
+html body .site-footer {
+  background-color: #d6cec2 !important;
+}
+
+/* DARK MODE KEEP */
+html body.dark .site-footer {
+  background-color: #151b19 !important;
+}
+
+
+
+/* TRUE FINAL FIX - FORCE SOLID FOOTER */
+.site-footer {
+  background: #d6cec2 !important;
+  opacity: 1 !important;
+  backdrop-filter: none !important;
+  filter: none !important;
+}
+
+/* prevent parent bleed */
+main, .front-hero, .page, body {
+  backdrop-filter: none !important;
+}
+
+/* keep dark mode */
+body.dark .site-footer {
+  background: #151b19 !important;
+}
+
+
+/* TRUE FINAL GLOBAL FIX */
+body:not(.dark) {
+  background-color: #d6cec2 !important;
+}
+
+.site-footer {
+  background-color: #d6cec2 !important;
+}
+
+/* DARK MODE */
+body.dark {
+  background-color: #151b19 !important;
+}
+
+body.dark .site-footer {
+  background-color: #151b19 !important;
+}
+
+/* GUARANTEED FINAL FIX */
+footer, .site-footer, .footer-nav {
+  background-color: #d6cec2 !important;
+}
+body.dark footer,
+body.dark .site-footer,
+body.dark .footer-nav {
+  background-color: #151b19 !important;
+}
+
+
+/* Footer styling */
+footer {
+  background-color: rgba(255,255,255,0.5) !important;
+}
+
+/* Force 3 columns side-by-side on mobile */
+@media (max-width: 768px) {
+  footer .footer-columns,
+  footer .columns,
+  footer .row {
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: space-around;
+  }
+
+  footer .column,
+  footer .col {
+    width: 33% !important;
+    text-align: center;
+  }
+}
+
+/* ===== HARD RESET FOOTER ===== */
+.site-footer,
+footer {
+  background: transparent !important;
+}
+
+/* create actual semi-transparent overlay */
+.site-footer::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(255,255,255,0.5);
+  z-index: 0;
+}
+
+.site-footer {
+  position: relative;
+  z-index: 1;
+}
+
+/* ensure content sits above */
+.site-footer * {
+  position: relative;
+  z-index: 2;
+}
+
+/* FORCE 3 columns mobile */
+.site-footer .footer-nav {
+  display: grid !important;
+  grid-template-columns: repeat(3, 1fr) !important;
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .site-footer .footer-nav {
+    grid-template-columns: repeat(3, 1fr) !important;
+  }
+}
+
+/* ===== CLEAN FINAL FOOTER ===== */
+
+/* remove fake transparent overlay */
+.site-footer::before {
+  display: none !important;
+  content: none !important;
+}
+
+/* keep ONLY sand colored box */
+.site-footer {
+  background: #d9d2c3 !important; /* sandfarve */
+  position: relative;
+}
+
+/* remove any white backgrounds inside */
+.site-footer * {
+  background: transparent !important;
+}
+
+/* keep 3 columns layout */
+.site-footer .footer-nav {
+  display: grid !important;
+  grid-template-columns: repeat(3, 1fr) !important;
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .site-footer .footer-nav {
+    grid-template-columns: repeat(3, 1fr) !important;
+  }
+}
+
+/* ===== HEADER COLOR FIX ===== */
+h1 {
+  color: #c94c4c !important; /* samme rød som h2/h3 */
+}
+
+/* ===== STICKY FOOTER ===== */
+html, body {
+  height: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+main {
+  flex: 1;
+}
+
+/* footer altid i bund */
+.site-footer {
+  margin-top: auto;
+}
+
+/* ===== FORCE ALL HEADINGS RED ===== */
+h1, h2, h3 {
+  color: #c94c4c !important;
+}
+
+/* kill ANY blue overrides */
+h1[style], h2[style], h3[style] {
+  color: #c94c4c !important;
+}
+
+/* ===== DARK MODE BUTTON FIX ===== */
+@media (prefers-color-scheme: dark) {
+
+  /* circle buttons */
+  .step-circle,
+  .number-circle,
+  .step-number {
+    background: #ffffff !important;
+    color: #000000 !important;
+  }
+
+  /* if buttons use generic classes */
+  .button,
+  .btn,
+  .card-number {
+    background: #ffffff !important;
+    color: #000000 !important;
+  }
+}
+
+/* ===== DARK MODE BUTTON FINAL FIX ===== */
+body.dark [class*="circle"],
+body.dark [class*="number"] {
+  background: #ffffff !important;
+  color: #000000 !important;
+}
+
+
+/* ===== FORCE MATCHING BORDERS ===== */
+.site-footer {
+  border-top: 4px solid #bfb7aa !important;
+}
+
+/* ensure no other rule overrides */
+footer.site-footer,
+html body .site-footer {
+  border-top: 4px solid #bfb7aa !important;
+}
+
+
+/* ===== FINAL THIN BORDER FIX ===== */
+.site-footer,
+footer.site-footer,
+html body .site-footer {
+  border-top: 1px solid #bfb7aa !important;
+}
+
+/* ===== STRICT FOOTER FIX (MOVE CONTENT UP + MATCH DESKTOP RHYTHM) ===== */
+footer, .footer, .site-footer {
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: flex-start !important; /* push content to top */
+}
+
+footer .container,
+.footer .container,
+.site-footer .container {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: flex-start !important; /* align columns to top */
+}
+
+/* match tighter desktop spacing */
+footer ul, footer div,
+.footer ul, .footer div,
+.site-footer ul, .site-footer div {
+  line-height: 1.2 !important;
+}
+
+footer li, .footer li, .site-footer li {
+  margin: 4px 0 !important;
+}
+
+/* create visible air under text */
+footer::after,
+.footer::after,
+.site-footer::after {
+  content: "" !important;
+  display: block !important;
+  height: 40px !important; /* space below content */
+}
+
+/* mobile specific tuning */
+@media (max-width: 768px) {
+  footer, .footer, .site-footer {
+    padding-top: 16px !important;
+    padding-bottom: 16px !important;
+  }
+
+  footer::after,
+  .footer::after,
+  .site-footer::after {
+    height: 60px !important; /* more air on mobile */
+  }
+}
+
+/* ===== FINAL LINE-HEIGHT ADJUSTMENT (MATCH DESKTOP) ===== */
+footer ul, footer div,
+.footer ul, .footer div,
+.site-footer ul, .site-footer div {
+  line-height: 1.35 !important;
+}
+
+footer li, .footer li, .site-footer li {
+  margin: 6px 0 !important;
+}
+
+@media (max-width: 768px) {
+  footer ul, footer div,
+  .footer ul, .footer div,
+  .site-footer ul, .site-footer div {
+    line-height: 1.35 !important;
+  }
+
+  footer li, .footer li, .site-footer li {
+    margin: 6px 0 !important;
+  }
+}

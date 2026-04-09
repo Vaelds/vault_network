@@ -1,0 +1,85 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 720" role="img" aria-labelledby="title desc">
+  <title id="title">Opgraderet terminalgrafik til feltlog</title>
+  <desc id="desc">En mørk retrofuturistisk beredskabsskærm med radar, waveform, systembokse og fallout-inspireret glød.</desc>
+  <defs>
+    <linearGradient id="frame" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#1a2317"/>
+      <stop offset="48%" stop-color="#0a0f0a"/>
+      <stop offset="100%" stop-color="#12180f"/>
+    </linearGradient>
+    <linearGradient id="glass" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0%" stop-color="#c3e69d" stop-opacity="0.14"/>
+      <stop offset="100%" stop-color="#000000" stop-opacity="0"/>
+    </linearGradient>
+    <radialGradient id="screenGlow" cx="50%" cy="42%" r="80%">
+      <stop offset="0%" stop-color="#1f3220"/>
+      <stop offset="58%" stop-color="#0e150f"/>
+      <stop offset="100%" stop-color="#060806"/>
+    </radialGradient>
+    <filter id="softGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <pattern id="scan" width="8" height="8" patternUnits="userSpaceOnUse">
+      <rect width="8" height="8" fill="transparent"/>
+      <rect width="8" height="2" fill="#d2f0ac" fill-opacity="0.03"/>
+    </pattern>
+  </defs>
+
+  <rect width="960" height="720" rx="34" fill="#050706"/>
+  <rect x="18" y="18" width="924" height="684" rx="28" fill="url(#frame)" stroke="#485835" stroke-width="2"/>
+  <rect x="32" y="32" width="896" height="656" rx="24" fill="url(#screenGlow)"/>
+  <rect x="32" y="32" width="896" height="656" rx="24" fill="url(#scan)" opacity="0.7"/>
+  <rect x="32" y="32" width="896" height="656" rx="24" fill="url(#glass)" opacity="0.7"/>
+
+  <g stroke="#9cb26d" stroke-opacity="0.45" fill="none">
+    <rect x="68" y="84" width="336" height="110" rx="12"/>
+    <rect x="438" y="84" width="454" height="300" rx="16"/>
+    <rect x="70" y="426" width="352" height="194" rx="16"/>
+    <rect x="462" y="426" width="360" height="194" rx="16"/>
+    <rect x="840" y="426" width="54" height="194" rx="16"/>
+  </g>
+
+  <g fill="#dce6a5" font-family="Arial, Helvetica, sans-serif" letter-spacing="3">
+  </g>
+
+  <g filter="url(#softGlow)" stroke="#c8f08a" stroke-width="4" fill="none">
+    <path d="M88 236h160l42 58 54-20 48 72 60-24"/>
+    <path d="M500 526c22-34 40-86 60-86s40 52 60 86 40 86 60 86 40-52 60-86"/>
+    <path d="M490 580h276" opacity="0.42"/>
+    <circle cx="248" cy="238" r="9" fill="#e6f7aa"/>
+    <circle cx="344" cy="274" r="9" fill="#e6f7aa"/>
+    <circle cx="452" cy="322" r="9" fill="#e6f7aa"/>
+  </g>
+
+  <g transform="translate(666 234)" filter="url(#softGlow)">
+    <circle r="92" fill="none" stroke="#b6d789" stroke-opacity="0.34"/>
+    <circle r="62" fill="none" stroke="#b6d789" stroke-opacity="0.34"/>
+    <circle r="30" fill="none" stroke="#b6d789" stroke-opacity="0.34"/>
+    <path d="M0 -92V92M-92 0H92" stroke="#91b564" stroke-opacity="0.18"/>
+    <path d="M0 0L52 -46" stroke="#d5f29b" stroke-width="5"/>
+    <circle cx="52" cy="-46" r="10" fill="#e8f9b1"/>
+    <circle r="8" fill="#d1eba1"/>
+  </g>
+
+  <g fill="#dce6a5" font-family="Arial, Helvetica, sans-serif">
+    <text x="92" y="474" font-size="26" letter-spacing="3">STATUS</text>
+    <text x="92" y="524" font-size="18">Shelter grid: ACTIVE</text>
+    <text x="92" y="566" font-size="18">Comms: WEAK / STABLE</text>
+    <text x="92" y="608" font-size="18">Rations: 63%</text>
+  </g>
+
+  <g fill="none" stroke="#d7c57c" stroke-width="3">
+    <path d="M820 126l28 52h-56z"/>
+    <path d="M780 160h108"/>
+  </g>
+
+  <g fill="#aab97f" opacity="0.9">
+    <rect x="86" y="104" width="78" height="8" rx="4"/>
+    <rect x="174" y="104" width="48" height="8" rx="4" opacity="0.65"/>
+    <rect x="232" y="104" width="60" height="8" rx="4" opacity="0.4"/>
+  </g>
+</svg>

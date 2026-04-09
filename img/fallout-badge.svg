@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 360" role="img" aria-labelledby="title desc">
+  <title id="title">Originalt beredskabsemblem</title>
+  <desc id="desc">Et rundt emblem med radioaktivt inspireret mønster og skjold.</desc>
+  <defs>
+    <linearGradient id="g" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0%" stop-color="#f7d26a"/>
+      <stop offset="100%" stop-color="#ad7d21"/>
+    </linearGradient>
+  </defs>
+  <circle cx="180" cy="180" r="170" fill="#17130d" stroke="#d0a43f" stroke-width="10"/>
+  <circle cx="180" cy="180" r="134" fill="#242116" stroke="#6e602f" stroke-width="6"/>
+  <g fill="url(#g)">
+    <path d="M180 64l38 68-38 20-38-20z"/>
+    <path d="M80 222l74-8 6 42-38 34z"/>
+    <path d="M280 222l-74-8-6 42 38 34z"/>
+  </g>
+  <path d="M180 125c30 0 54 24 54 54s-24 54-54 54-54-24-54-54 24-54 54-54z" fill="#151a11" stroke="#95ff61" stroke-width="8"/>
+  <path d="M180 149c17 0 30 13 30 30s-13 30-30 30-30-13-30-30 13-30 30-30z" fill="#95ff61" opacity=".22"/>
+  <path d="M180 100v26M180 234v26M102 180h26M232 180h26" stroke="#95ff61" stroke-width="8" stroke-linecap="round"/>
+</svg>

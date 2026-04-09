@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Emergency site om atomtrussel, overlevelse og indberetning under en nødsituation.">
+  <link rel="stylesheet" href="css/fonts.css">
+  <link rel="stylesheet" href="css/general.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/burger.css">
+  <link rel="stylesheet" href="css/cards.css">
+  <link rel="stylesheet" href="css/custom.css">
+  <link rel="stylesheet" href="css/fallout.css">
+  <link rel="stylesheet" href="css/mobile-nav-rebuild.css">
+  <link rel="stylesheet" href="css/final-overrides.css">
+  <link rel="icon" type="image/png" href="img/vaultnet-icon.png">
+  <title>Vault Net | Forside</title>
+  <link rel="stylesheet" href="css/v25-polish.css">
+</head>
+<body id="frontpage">
+  <header class="site-header">
+    <nav class="nav-container">
+      <div id="logotype-wrapper" class="logo">
+        <a class="logo-mark vault-brand" href="index.html" aria-label="Gå til forsiden på Vault Net">
+          <span class="vault-brand__word vault-brand__word--left">Vault</span>
+          <img class="vault-brand__icon" src="img/vaultnet-icon.png" alt="Vault Net ikon">
+          <span class="vault-brand__word vault-brand__word--right">net</span>
+        </a>
+      </div>
+
+      <ul class="menu" id="site-menu">
+        <li><a class="menuItem active" href="index.html">Forside</a></li>
+        <li><a class="menuItem" href="instruction.html">Nærkontakt</a></li>
+        <li><a class="menuItem" href="register.html">Indberet</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <button id="alarm-toggle" class="theme-toggle alarm-toggle" type="button" data-alarm-trigger data-alarm-on-text="Stop alarm" data-alarm-off-text="Alarm" aria-pressed="false" aria-label="Aktivér eller deaktiver rød alarm i baggrunden">Alarm</button>
+        <button class="burger" type="button" aria-label="Åbn menu" aria-controls="mobile-nav-panel" aria-expanded="false">
+          <span class="line"></span>
+          <span class="line"></span>
+          <span class="line"></span>
+        </button>
+      </div>
+      <div class="mobile-nav-panel" id="mobile-nav-panel" hidden>
+        <p class="mobile-nav-panel__eyebrow">Vault navigation</p>
+        <a class="mobile-nav-panel__link is-active" href="index.html">Forside</a>
+        <a class="mobile-nav-panel__link" href="instruction.html">Nærkontakt</a>
+        <a class="mobile-nav-panel__link" href="register.html">Indberet</a>
+        <button class="mobile-nav-panel__alarm" type="button" data-alarm-trigger data-alarm-on-text="Stop alarm" data-alarm-off-text="Rød alarm" aria-pressed="false" aria-label="Aktivér eller deaktiver rød alarm i baggrunden">Rød alarm</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="vault-hero">
+      <div class="vault-hero__copy">
+        <p class="eyebrow">Civil defense terminal // sektor Danmark</p>
+        <h1>Vault Net holder overblikket, når verden flimrer</h1>
+        <p class="vault-hero__lede">Vault Net samler vejledning, varsling og indberetning i én bunkerterminal. Her kan brugeren hurtigt orientere sig om trusselsniveau, handlevejledninger og rapportering under en beredskabssituation.</p>
+
+        <div class="vault-hero__actions">
+          <a class="button" href="instruction.html">Åbn nærkontakt</a>
+          <a class="button button_secondary" href="register.html">Send indberetning</a>
+        </div>
+
+        <div class="vault-status-grid" aria-label="Statusmoduler">
+          <article class="vault-status-card">
+            <span class="vault-status-card__label">Status</span>
+            <h2><span>Trussels-</span><span>niveau</span></h2>
+            <p>Få et hurtigt overblik over alarm, beskyttelse, nedfald og næste skridt, når situationen kræver klare valg.</p>
+          </article>
+          <article class="vault-status-card">
+            <span class="vault-status-card__label">Routing</span>
+            <h2><span>Tre hoved-</span><span>moduler</span></h2>
+            <p>Terminalen leder videre til nærkontakt, indberetning og arkiv, så vigtig information er samlet ét sted.</p>
+          </article>
+          <article class="vault-status-card">
+            <span class="vault-status-card__label">Visning</span>
+            <h2><span>Arkiv-</span><span>terminal</span></h2>
+            <p>Det mørke skærmlys, de tekniske markeringer og de robuste paneler understøtter et troværdigt beredskabsunivers.</p>
+          </article>
+        </div>
+      </div>
+
+      <aside class="vault-hero__aside" aria-label="Kontrolpanel og arkiv">
+        <article class="vault-poster card-shell">
+          <div class="vault-poster__header">
+            <span>Vault Net</span>
+            <span>Front terminal</span>
+          </div>
+          <img src="img/1769864375811.jpg" alt="Kort og plakat om atomtrussel under den kolde krig">
+        </article>
+
+        <article class="vault-side-panel card-shell">
+          <h2 class="vault-side-panel__title">Vault Net</h2>
+          <ul class="vault-side-panel__list">
+            <li>Få direkte adgang til varsling, vejledning og feltlog</li>
+            <li>Brug arkivtilstand for en mørkere terminalvisning</li>
+            <li>Navigér mellem bunkerens vigtigste systemer fra forsiden</li>
+          </ul>
+        </article>
+      </aside>
+    </section>
+
+    <section class="vault-link-grid" aria-label="Vigtige moduler">
+      <a class="vault-link-card" href="instruction.html">
+        <span class="vault-link-card__index">01</span>
+        <h2>Nærkontakt</h2>
+        <p>Læs protokoller, undersøg grafikken og få de vigtigste råd direkte fra den taktiske terminal.</p>
+      </a>
+      <a class="vault-link-card" href="register.html">
+        <span class="vault-link-card__index">02</span>
+        <h2>Indberet</h2>
+        <p>Send feltlog med position, behov og status til systemet, når hændelser skal registreres hurtigt.</p>
+      </a>
+      <button class="vault-link-card vault-link-card--toggle" id="alarm-toggle-card" type="button" data-alarm-trigger aria-pressed="false" aria-label="Aktivér eller deaktiver rød alarm i baggrunden">
+        <span class="vault-link-card__index">03</span>
+        <h2>Rød alarm</h2>
+        <p>Aktivér en pulserende alarmtilstand i baggrunden med sirenepuls, så terminalen reagerer som et rigtigt beredskabssystem.</p>
+      </button>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <nav class="footer-nav">
+      <ul>
+        <li><a href="index.html">Forside</a></li>
+        <li><a href="instruction.html">Nærkontakt</a></li>
+        <li><a href="register.html">Indberet</a></li>
+      </ul>
+      <ul>
+        <li><a href="#">Beredskab</a></li>
+        <li><a href="#">Arkiv</a></li>
+        <li><a href="#">Kontakt</a></li>
+      </ul>
+      <ul>
+        <li><a href="#">Privatliv</a></li>
+        <li><a href="#">Tilgængelighed</a></li>
+        <li><a href="404.html">404</a></li>
+      </ul>
+    </nav>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

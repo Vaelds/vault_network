@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="404-side med dokumentation og systemoverblik for Vault Net.">
+  <link rel="stylesheet" href="css/fonts.css">
+  <link rel="stylesheet" href="css/general.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/burger.css">
+  <link rel="stylesheet" href="css/cards.css">
+  <link rel="stylesheet" href="css/custom.css">
+  <link rel="stylesheet" href="css/fallout.css">
+  <link rel="stylesheet" href="css/mobile-nav-rebuild.css">
+  <link rel="stylesheet" href="css/final-overrides.css">
+  <link rel="stylesheet" href="css/requested-fixes.css">
+  <link rel="stylesheet" href="css/v25-polish.css">
+  <link rel="icon" type="image/png" href="img/vaultnet-icon.png">
+  <title>Vault Net | 404</title>
+</head>
+<body id="readme-page">
+  <header class="site-header">
+    <nav class="nav-container">
+      <div id="logotype-wrapper" class="logo">
+        <a class="logo-mark vault-brand" href="index.html" aria-label="Gå til forsiden på Vault Net">
+          <span class="vault-brand__word vault-brand__word--left">Vault</span>
+          <img class="vault-brand__icon" src="img/vaultnet-icon.png" alt="Vault Net ikon">
+          <span class="vault-brand__word vault-brand__word--right">net</span>
+        </a>
+      </div>
+
+      <ul class="menu" id="site-menu">
+        <li><a class="menuItem" href="index.html">Forside</a></li>
+        <li><a class="menuItem" href="instruction.html">Nærkontakt</a></li>
+        <li><a class="menuItem" href="register.html">Indberet</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <button id="alarm-toggle" class="theme-toggle alarm-toggle" type="button" data-alarm-trigger data-alarm-on-text="Stop alarm" data-alarm-off-text="Alarm" aria-pressed="false" aria-label="Aktivér eller deaktiver rød alarm i baggrunden">Alarm</button>
+        <button class="burger" type="button" aria-label="Åbn menu" aria-controls="mobile-nav-panel" aria-expanded="false">
+          <span class="line"></span>
+          <span class="line"></span>
+          <span class="line"></span>
+        </button>
+      </div>
+      <div class="mobile-nav-panel" id="mobile-nav-panel" hidden>
+        <p class="mobile-nav-panel__eyebrow">Vault navigation</p>
+        <a class="mobile-nav-panel__link" href="index.html">Forside</a>
+        <a class="mobile-nav-panel__link" href="instruction.html">Nærkontakt</a>
+        <a class="mobile-nav-panel__link" href="register.html">Indberet</a>
+        <button class="mobile-nav-panel__alarm" type="button" data-alarm-trigger data-alarm-on-text="Stop alarm" data-alarm-off-text="Rød alarm" aria-pressed="false" aria-label="Aktivér eller deaktiver rød alarm i baggrunden">Rød alarm</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="page-intro template-heading-block readme-intro">
+      <p class="eyebrow">SYSTEM // CIVIL DEFENSE NETWORK</p>
+      <p class="readme-intro-meta">SYSTEMLOG // README</p>
+      <h1>Vault Net dokumentation</h1>
+      <p class="subheading">Projektoversigt, filstruktur og forklaring<br>af bunkerterminalens vigtigste moduler.</p>
+    </section>
+
+    <section class="readme-layout">
+      <article class="card-shell readme-summary">
+        <p class="readme-kicker">STATUS REPORT // NETWORK SNAPSHOT</p>
+        <h2>Projektstatus</h2>
+        <p>Vault Net er opbygget som en bunkerterminal med fælles header, mobilmenu,<br>alarmtilstand, interaktiv SVG-grafik, fade-baserede informationsskift, countdown-overlay<br>og formularvisning med billedanimation på indberet-siden.</p>
+        <ul class="readme-checklist">
+          <li>Topmenu med hover-markering, mobilpanel og sideovergange</li>
+          <li>Interaktiv SVG med klikbare hotspots og visuel respons</li>
+          <li>Tekstfelter der fader frem, når nyt hotspot vælges</li>
+          <li>Countdown-effekt i infofeltet ved valg i grafikken</li>
+          <li>Billedanimation på indberet-siden via crossfade mellem to versioner</li>
+        </ul>
+      </article>
+
+      <article class="card-shell readme-panel">
+        <p class="readme-kicker">NAVIGATION LAYER // MOTION SYSTEMS</p>
+        <h2>Topmenu og animationer</h2>
+        <p>Topmenuen er bygget med samme bunkerdesign på alle sider. På desktop markeres menupunkter med en animeret understregning og let hover-respons, så navigationen føles aktiv uden at bryde den militære terminalstil.</p>
+        <p>På mobil åbnes menuen som et separat panel, der glider og fader ind. Panelet bruger transform og opacity, så bevægelsen virker kontrolleret og teknisk. Samtidig skjules det aktive link i mobilmenuen, så brugeren ikke bliver præsenteret for det samme sidemål igen.</p>
+        <p>Ved klik på interne links kører der desuden en kort page transition, hvor siden toner ud, før næste side åbner. Det giver et samlet flow mellem Forside, Nærkontakt, Indberet og 404-siden.</p>
+      </article>
+
+      <article class="info-box readme-panel">
+        <p class="readme-kicker">ALERT TIMER // COUNTDOWN DISPLAY</p>
+        <h2>Countdown-effekt</h2>
+        <p>Hver gang der vælges et nyt hotspot, aktiveres et countdown-overlay oven på infoområdet. Overlayet består af ringe, krydsmarkering, sweep-effekt, film grain og et stort nedtællingstal, der skifter fra 3 til 2 til 1.</p>
+        <p>Animationen er bevidst lavet som en gammel varslingsmonitor. Den kombinerer fade, rotation, flicker og tidsstyrede tekstskift for at signalere alarm, scanning og dataopslag. Countdownen ligger kun oven på infopanelet og påvirker ikke resten af layoutet.</p>
+      </article>
+
+      <article class="info-box readme-panel">
+        <p class="readme-kicker">DATA FEED // REVEAL SEQUENCE</p>
+        <h2>Tekst der fader frem ved klik</h2>
+        <p>Når brugeren klikker på et hotspot i SVG-grafikken, bliver informationsfelterne til højre opdateret med ny titel, beskrivelse og punktlister. Efter opdateringen tilføjes en fade-klasse, så tekstpanelerne dukker frem igen i stedet for bare at skifte øjeblikkeligt.</p>
+        <p>Fade-effekten er bygget med keyframes, opacity, vertical translate og let blur, så skiftet føles som et system, der loader nye data ind i kontrolrummet. Effekten understøtter den narrative bunkeræstetik og gør det tydeligt, at indholdet har ændret sig.</p>
+      </article>
+
+      <article class="text-panel readme-panel">
+        <p class="readme-kicker">VECTOR MAP // INTERACTIVE HOTSPOTS</p>
+        <h2>SVG-grafik og klikbare zoner</h2>
+        <p>På Nærkontakt-siden bliver SVG-filen <code>russer_abombe.svg</code> indlæst i et object-tag. JavaScript finder de fire centrale hotspots: <code>bombe_1</code>, <code>bombe_2</code>, <code>bombe_3</code> og <code>soldat</code> samt deres alternative id-navne i filen.</p>
+        <p>Når et hotspot aktiveres, får det en tydelig glød og en aktiv markering. Bombe-zonerne har en kraftigere impact-animation med rød glow og let forskydning, mens soldat-zonen får samme kliklogik i en mere rolig version. Det gør grafikken læsbar og interaktiv uden at ændre selve SVG-filen permanent.</p>
+      </article>
+
+      <article class="card-shell readme-panel">
+        <p class="readme-kicker">ARCHIVE VIEW // IMAGE TRANSITION</p>
+        <h2>Indberet-siden og billedanimation</h2>
+        <p>På Indberet-siden vises et arkivfoto i farve som standard. Ved hover eller fokus fades originalen ud, mens en sort-hvid version af samme motiv fades ind ovenpå. Det sker via en crossfade mellem selve billedet og en pseudo-element baggrund.</p>
+        <p>Denne animation giver siden et mere levende og dokumentarisk udtryk. Brugeren oplever, at billedet skifter karakter fra nutidig visning til arkivmateriale, uden at siden hopper eller loader på ny. Effekten er sat op med samme afrundinger og proportioner som resten af sitets framed media.</p>
+      </article>
+
+      <article class="info-box readme-panel">
+        <p class="readme-kicker">CONTROL LAYER // AUXILIARY SYSTEMS</p>
+        <h2>Supplerende interaktioner</h2>
+        <p>Alarmknappen i headeren kan aktivere den røde alarmtilstand på tværs af sitet. Derudover håndterer formularen på Indberet-siden brugerinput direkte i browseren og skriver en opsummering til logbogen uden genindlæsning.</p>
+        <p>README-filen forbliver en almindelig Markdown-fil i repositoryet. Denne side bruges kun som kundens 404-link i footeren, så GitHub ikke bliver forvirret af HTML i selve <code>README.md</code>.</p>
+      </article>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <nav class="footer-nav">
+      <ul>
+        <li><a href="index.html">Forside</a></li>
+        <li><a href="instruction.html">Nærkontakt</a></li>
+        <li><a href="register.html">Indberet</a></li>
+      </ul>
+      <ul>
+        <li><a href="#">Beredskab</a></li>
+        <li><a href="#">Arkiv</a></li>
+        <li><a href="#">Kontakt</a></li>
+      </ul>
+      <ul>
+        <li><a href="#">Privatliv</a></li>
+        <li><a href="#">Tilgængelighed</a></li>
+        <li><a href="404.html">404</a></li>
+      </ul>
+    </nav>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

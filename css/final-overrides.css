@@ -1,0 +1,278 @@
+:root {
+  --vault-nav-pill-bg: linear-gradient(180deg, rgba(23, 31, 23, 0.88), rgba(9, 12, 10, 0.94));
+  --vault-nav-pill-border: rgba(184, 242, 152, 0.08);
+  --vault-nav-pill-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.02);
+}
+
+/* Logo: restore shadow instead of removing it */
+#logotype-wrapper .logo-mark.vault-brand,
+#logotype-wrapper .vault-brand {
+  filter: none !important;
+}
+
+#logotype-wrapper .vault-brand__word,
+#logotype-wrapper .logo-mark.vault-brand .vault-brand__word {
+  color: var(--accent-2) !important;
+  text-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.72),
+    0 4px 12px rgba(0, 0, 0, 0.68) !important;
+}
+
+#logotype-wrapper .vault-brand__icon,
+#logotype-wrapper .logo-mark.vault-brand .vault-brand__icon {
+  filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.68)) !important;
+  box-shadow:
+    0 0 0 1px rgba(184, 242, 152, 0.16),
+    0 10px 22px rgba(0, 0, 0, 0.72) !important;
+}
+
+/* Desktop nav rebuilt to use one single Fallout pill design */
+@media (min-width: 769px) {
+  .site-header .menu,
+  .site-header .menu:hover,
+  .site-header .nav-container:hover .menu,
+  .site-header .burger:hover + .menu,
+  .site-header .nav-actions:hover + .menu {
+    display: flex !important;
+    align-items: center !important;
+    gap: 0.7rem !important;
+    list-style: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    position: static !important;
+    width: auto !important;
+    background: transparent !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: none !important;
+    pointer-events: auto !important;
+  }
+
+  .site-header .menu li {
+    margin: 0 !important;
+    padding: 0 !important;
+    list-style: none !important;
+  }
+
+  .site-header .menu .menuItem,
+  .site-header .menu a,
+  body.dark .site-header .menu .menuItem,
+  body.dark .site-header .menu a,
+  .site-header .nav-container:hover .menu .menuItem,
+  .site-header .nav-container:hover .menu a,
+  .site-header .menu:hover .menuItem,
+  .site-header .menu:hover a,
+  .site-header .menu .menuItem:hover,
+  .site-header .menu .menuItem:focus-visible,
+  .site-header .menu .menuItem.active,
+  body.dark .site-header .menu .menuItem:hover,
+  body.dark .site-header .menu .menuItem:focus-visible,
+  body.dark .site-header .menu .menuItem.active {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    min-height: 3.15rem !important;
+    padding: 0.95rem 1.28rem !important;
+    border-radius: 1.05rem !important;
+    border: 1px solid var(--vault-nav-pill-border) !important;
+    background: var(--vault-nav-pill-bg) !important;
+    box-shadow: var(--vault-nav-pill-shadow) !important;
+    color: #e5e8b8 !important;
+    font-family: var(--display-font) !important;
+    font-size: 0.98rem !important;
+    line-height: 1 !important;
+    letter-spacing: 0.05em !important;
+    text-transform: uppercase !important;
+    text-decoration: none !important;
+    text-align: center !important;
+    transform: none !important;
+    transition: none !important;
+    outline: none !important;
+  }
+
+  .site-header .menu .menuItem::after,
+  .site-header .menu .menuItem.active::after,
+  .site-header .menu .menuItem:hover::after,
+  .site-header .menu .menuItem:focus-visible::after,
+  .site-header .nav-container:hover .menu .menuItem::after,
+  .site-header .menu:hover .menuItem::after {
+    display: none !important;
+    content: none !important;
+  }
+
+  .site-header .nav-actions {
+    gap: 0.7rem !important;
+  }
+
+  .site-header .alarm-toggle,
+  .site-header .alarm-toggle:hover,
+  .site-header .alarm-toggle:focus-visible,
+  .site-header .alarm-toggle.is-active,
+  .site-header .theme-toggle,
+  .site-header .theme-toggle:hover,
+  .site-header .theme-toggle:focus-visible,
+  .site-header .theme-toggle.is-active {
+    min-height: 3.15rem !important;
+    padding: 0.95rem 1.28rem !important;
+    border-radius: 1.05rem !important;
+    border: 1px solid var(--vault-nav-pill-border) !important;
+    background: var(--vault-nav-pill-bg) !important;
+    box-shadow: var(--vault-nav-pill-shadow) !important;
+    color: #e5e8b8 !important;
+    font-family: var(--display-font) !important;
+    font-size: 0.98rem !important;
+    line-height: 1 !important;
+    letter-spacing: 0.05em !important;
+    text-transform: uppercase !important;
+    transform: none !important;
+    transition: none !important;
+    outline: none !important;
+  }
+}
+
+/* Mobile Nærkontakt page: restore side margin so it matches other pages */
+@media (max-width: 768px) {
+  #instruction main {
+    width: min(1240px, calc(100% - 2rem)) !important;
+    margin: 0 auto !important;
+    padding: 1rem 0 3rem !important;
+  }
+
+  #instruction .page-intro,
+  #instruction .instruction-layout {
+    margin-inline: 0 !important;
+  }
+
+  #instruction .info-text {
+    padding: 0.1rem 0 0 !important;
+  }
+
+  #instruction .text-panel,
+  #instruction .info-box {
+    margin: 0 !important;
+  }
+}
+
+/* Register page: replace the old secondary image with the provided archival photo without removing its yellow tone */
+#register .register-archive-photo {
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+}
+
+#register .register-archive-photo::before {
+  display: none !important;
+  content: none !important;
+}
+
+#register .register-archive-photo img {
+  display: block !important;
+  width: 100% !important;
+  aspect-ratio: 1 / 1 !important;
+  object-fit: cover !important;
+  object-position: center !important;
+  border-radius: 24px !important;
+  filter: none !important;
+  background: transparent !important;
+}
+
+
+/* ===== v18 header tone-down + panic alarm button ===== */
+.site-header::before {
+  opacity: 0.5 !important;
+}
+
+@media (min-width: 769px) {
+  .site-header .nav-actions #alarm-toggle.alarm-toggle {
+    width: clamp(3.9rem, 5.2vw, 4.65rem) !important;
+    min-width: clamp(3.9rem, 5.2vw, 4.65rem) !important;
+    height: clamp(3.9rem, 5.2vw, 4.65rem) !important;
+    min-height: clamp(3.9rem, 5.2vw, 4.65rem) !important;
+    padding: 0 !important;
+    border: 0 !important;
+    border-radius: 1rem !important;
+    background: url('../img/panic-button.png') center/cover no-repeat !important;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.44) !important;
+    color: transparent !important;
+    font-size: 0 !important;
+    line-height: 0 !important;
+    letter-spacing: 0 !important;
+    text-transform: none !important;
+    text-indent: -9999px !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    cursor: pointer !important;
+    transition: transform 180ms ease, filter 180ms ease, box-shadow 180ms ease !important;
+    background-color: transparent !important;
+    background-size: 110% !important;
+    background-position: center !important;
+    outline-offset: 4px !important;
+  }
+
+  .site-header .nav-actions #alarm-toggle.alarm-toggle:hover,
+  .site-header .nav-actions #alarm-toggle.alarm-toggle:focus-visible {
+    transform: translateY(-2px) scale(1.02) !important;
+    filter: saturate(1.05) brightness(1.03) !important;
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.48) !important;
+  }
+
+  .site-header .nav-actions #alarm-toggle.alarm-toggle.is-active {
+    box-shadow: 0 0 0 2px rgba(255, 101, 101, 0.3), 0 16px 30px rgba(128, 10, 10, 0.34) !important;
+    filter: saturate(1.08) brightness(1.02) !important;
+  }
+
+  .site-header .nav-actions #alarm-toggle.alarm-toggle.is-clicking {
+    animation: vaultPanicButtonPress 280ms cubic-bezier(0.2, 0.8, 0.2, 1) !important;
+  }
+}
+
+.mobile-nav-panel__alarm.is-clicking,
+.vault-link-card--toggle.is-clicking {
+  animation: vaultAlarmButtonTap 240ms ease-out;
+}
+
+@keyframes vaultPanicButtonPress {
+  0% {
+    transform: translateY(0) scale(1);
+  }
+  35% {
+    transform: translateY(4px) scale(0.93);
+  }
+  68% {
+    transform: translateY(1px) scale(0.98);
+  }
+  100% {
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes vaultAlarmButtonTap {
+  0% {
+    transform: scale(1);
+  }
+  45% {
+    transform: scale(0.97);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .site-header .nav-actions #alarm-toggle.alarm-toggle,
+  .site-header .nav-actions #alarm-toggle.alarm-toggle:hover,
+  .site-header .nav-actions #alarm-toggle.alarm-toggle:focus-visible,
+  .site-header .nav-actions #alarm-toggle.alarm-toggle.is-active,
+  .site-header .nav-actions #alarm-toggle.alarm-toggle.is-clicking,
+  .mobile-nav-panel__alarm.is-clicking,
+  .vault-link-card--toggle.is-clicking {
+    animation: none !important;
+    transition: none !important;
+    transform: none !important;
+  }
+}
