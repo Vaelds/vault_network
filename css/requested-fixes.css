@@ -278,3 +278,21 @@
   display: none;
 }
 
+
+/* v33 request: make all white 404-page text match the muted grey tone from the front page reference */
+#readme-page {
+  --readme-muted-grey: #9ca082;
+}
+
+#readme-page .subheading,
+#readme-page .readme-summary p,
+#readme-page .readme-panel p,
+#readme-page .readme-list li,
+#readme-page .readme-panel li,
+#readme-page .footer-nav a,
+#readme-page .mobile-nav-panel__link,
+#readme-page .mobile-nav-panel__alarm,
+#readme-page .site-header .menu > li > .menuItem {
+  color: var(--readme-muted-grey) !important;
+  -webkit-text-fill-color: var(--readme-muted-grey) !important;
+}
