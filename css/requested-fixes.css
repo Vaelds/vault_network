@@ -279,20 +279,16 @@
 }
 
 
-/* v33 request: make all white 404-page text match the muted grey tone from the front page reference */
-#readme-page {
-  --readme-muted-grey: #9ca082;
+
+/* v33 request: only recolor the specific 404 body text excerpts, not the headings */
+#readme-page h1,
+#readme-page .readme-panel h2,
+#readme-page .readme-summary h2 {
+  color: var(--accent-2) !important;
 }
 
 #readme-page .subheading,
-#readme-page .readme-summary p,
-#readme-page .readme-panel p,
-#readme-page .readme-list li,
-#readme-page .readme-panel li,
-#readme-page .footer-nav a,
-#readme-page .mobile-nav-panel__link,
-#readme-page .mobile-nav-panel__alarm,
-#readme-page .site-header .menu > li > .menuItem {
-  color: var(--readme-muted-grey) !important;
-  -webkit-text-fill-color: var(--readme-muted-grey) !important;
+#readme-page .readme-summary > p:not(.readme-kicker),
+#readme-page .readme-panel > p:not(.readme-kicker) {
+  color: #9ca080 !important;
 }
