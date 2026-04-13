@@ -15,7 +15,11 @@
   <link rel="stylesheet" href="css/final-overrides.css">
   <link rel="stylesheet" href="css/requested-fixes.css">
   <link rel="stylesheet" href="css/v25-polish.css">
-  <link rel="icon" type="image/png" href="img/vaultnet-icon.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+  <link rel="icon" href="favicon.ico" sizes="any">
+  <link rel="manifest" href="site.webmanifest">
   <title>Vault Net | 404</title>
 </head>
 <body id="readme-page">
@@ -33,6 +37,8 @@
         <li><a class="menuItem" href="index.html">Forside</a></li>
         <li><a class="menuItem" href="instruction.html">Nærkontakt</a></li>
         <li><a class="menuItem" href="register.html">Indberet</a></li>
+        <li><a class="menuItem active" href="404.html">404</a></li>
+        <li><button class="menuItem menuItem--button spotlight-menu-button" type="button" data-spotlight-trigger aria-pressed="false" aria-label="Aktivér spotlight">Spotlight</button></li>
       </ul>
 
       <div class="nav-actions">
@@ -48,6 +54,8 @@
         <a class="mobile-nav-panel__link" href="index.html">Forside</a>
         <a class="mobile-nav-panel__link" href="instruction.html">Nærkontakt</a>
         <a class="mobile-nav-panel__link" href="register.html">Indberet</a>
+        <a class="mobile-nav-panel__link is-active" href="404.html">404</a>
+        <button class="mobile-nav-panel__link mobile-nav-panel__link--button mobile-nav-panel__spotlight" type="button" data-spotlight-trigger aria-pressed="false" aria-label="Aktivér spotlight">Spotlight</button>
         <button class="mobile-nav-panel__alarm" type="button" data-alarm-trigger data-alarm-on-text="Stop alarm" data-alarm-off-text="Rød alarm" aria-pressed="false" aria-label="Aktivér eller deaktiver rød alarm i baggrunden">Rød alarm</button>
       </div>
     </nav>
@@ -112,10 +120,11 @@
       </article>
 
       <article class="info-box readme-panel">
-        <p class="readme-kicker">CONTROL LAYER // AUXILIARY SYSTEMS</p>
-        <h2>Supplerende interaktioner</h2>
+        <p class="readme-kicker">CONTROL LAYER // SPOTLIGHT SYSTEM</p>
+        <h2>Spotlight-funktion</h2>
+        <p>Spotlight-funktionen mørklægger siden med et radialt lysfelt, som følger markøren på desktop. Effekten kan slås til og fra direkte fra topmenuen, så brugeren hurtigt kan skifte mellem normal visning og fokuslys.</p>
+        <p>På mobil bliver spotlight styret fra dropdown-menuen med samme toggle-knap, så funktionen også kan deaktiveres igen uden at forlade menuen.</p>
         <p>Alarmknappen i headeren kan aktivere den røde alarmtilstand på tværs af sitet. Derudover håndterer formularen på Indberet-siden brugerinput direkte i browseren og skriver en opsummering til logbogen uden genindlæsning.</p>
-        <p>README-filen forbliver en almindelig Markdown-fil i repositoryet. Denne side bruges kun som kundens 404-link i footeren, så GitHub ikke bliver forvirret af HTML i selve <code>README.md</code>.</p>
       </article>
     </section>
   </main>

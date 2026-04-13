@@ -1895,3 +1895,142 @@ footer li, .footer li, .site-footer li {
 
 
 
+
+
+/* ===== spotlight overlay ===== */
+.spotlight-page {
+  --spotlight-x: 50vw;
+  --spotlight-y: 220px;
+  --spotlight-inner: 140px;
+  --spotlight-outer: 260px;
+  position: relative;
+}
+
+@media (pointer: fine) {
+  .spotlight-page,
+  .spotlight-page * {
+    cursor: none;
+  }
+}
+
+.spotlight-page::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 999;
+  opacity: 0;
+  transition: opacity 180ms ease;
+  background: radial-gradient(
+    circle at var(--spotlight-x) var(--spotlight-y),
+    rgba(255, 248, 199, 0.88) 0,
+    rgba(255, 248, 199, 0.52) calc(var(--spotlight-inner) * 0.6),
+    rgba(255, 248, 199, 0.12) var(--spotlight-inner),
+    rgba(0, 0, 0, 0.75) var(--spotlight-outer)
+  );
+}
+
+.spotlight-page.spotlight-active::after {
+  opacity: 1;
+}
+
+@media (pointer: coarse), (prefers-reduced-motion: reduce) {
+  .spotlight-page::after {
+    opacity: 1;
+    background: radial-gradient(
+      circle at 50% 180px,
+      rgba(255, 248, 199, 0.72) 0,
+      rgba(255, 248, 199, 0.2) 150px,
+      rgba(0, 0, 0, 0.75) 280px
+    );
+  }
+}
+
+/* ===== spotlight toggle controls ===== */
+.menuItem--button {
+  appearance: none;
+  border: 0;
+  background: transparent;
+}
+
+.spotlight-menu-button,
+.mobile-nav-panel__spotlight {
+  white-space: normal;
+}
+
+.spotlight-menu-button .spotlight-button-label--two-line,
+.mobile-nav-panel__spotlight .spotlight-button-label--two-line {
+  min-width: 7.2ch;
+}
+
+.mobile-nav-panel__spotlight {
+  margin-top: 0.9rem !important;
+}
+
+
+.spotlight-menu-button.spotlight-is-active,
+.mobile-nav-panel__spotlight.spotlight-is-active {
+  white-space: normal;
+}
+
+.spotlight-button-label {
+  display: inline-block;
+}
+
+.spotlight-button-label--two-line {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  line-height: 0.92;
+}
+
+body.spotlight-enabled {
+  --spotlight-x: 50vw;
+  --spotlight-y: 220px;
+  --spotlight-inner: 140px;
+  --spotlight-outer: 260px;
+}
+
+@media (pointer: fine) {
+  body.spotlight-enabled,
+  body.spotlight-enabled * {
+    cursor: none;
+  }
+}
+
+.spotlight-overlay {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 999;
+  opacity: 0;
+  transition: opacity 180ms ease;
+  background: radial-gradient(
+    circle at var(--spotlight-x) var(--spotlight-y),
+    rgba(255, 248, 199, 0.88) 0,
+    rgba(255, 248, 199, 0.52) calc(var(--spotlight-inner) * 0.6),
+    rgba(255, 248, 199, 0.12) var(--spotlight-inner),
+    rgba(0, 0, 0, 0.75) var(--spotlight-outer)
+  );
+}
+
+.spotlight-overlay.is-active {
+  opacity: 1;
+}
+
+body.spotlight-enabled::after {
+  content: none;
+}
+
+@media (pointer: coarse), (prefers-reduced-motion: reduce) {
+  .spotlight-overlay,
+  .spotlight-overlay.is-active {
+    background: radial-gradient(
+      circle at 50% 180px,
+      rgba(255, 248, 199, 0.72) 0,
+      rgba(255, 248, 199, 0.2) 150px,
+      rgba(0, 0, 0, 0.75) 280px
+    );
+  }
+}
+

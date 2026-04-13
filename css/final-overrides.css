@@ -276,3 +276,13 @@
     transform: none !important;
   }
 }
+
+
+
+
+/* v35: remove CTA pill from frontpage 404 card */
+.vault-link-card--toggle::after,
+body.dark .vault-link-card--toggle::after {
+  content: none !important;
+  display: none !important;
+}

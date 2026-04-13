@@ -58,9 +58,11 @@
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
+    overflow: hidden;
+    isolation: isolate;
     transform: translateY(-10px) scale(0.985);
     transition: opacity 180ms ease, transform 180ms ease, visibility 180ms ease;
-    z-index: 165;
+    z-index: 1005;
   }
 
   .mobile-nav-panel.showMenu {
@@ -95,7 +97,7 @@
     font-family: var(--display-font);
     font-size: 0.98rem;
     letter-spacing: 0.05em;
-    line-height: 1;
+    line-height: 1.05;
     text-transform: uppercase;
     text-decoration: none;
     text-align: left;
@@ -103,13 +105,15 @@
 
   .mobile-nav-panel__link + .mobile-nav-panel__link,
   .mobile-nav-panel__link + .mobile-nav-panel__alarm,
-  .mobile-nav-panel__alarm + .mobile-nav-panel__link {
+  .mobile-nav-panel__alarm + .mobile-nav-panel__link,
+  .mobile-nav-panel__alarm + .mobile-nav-panel__alarm {
     margin-top: 0.55rem;
   }
 
   .mobile-nav-panel__link:hover,
   .mobile-nav-panel__link:focus-visible,
   .mobile-nav-panel__link.is-active,
+  .mobile-nav-panel__spotlight.spotlight-is-active,
   .mobile-nav-panel__alarm:hover,
   .mobile-nav-panel__alarm:focus-visible,
   .mobile-nav-panel__alarm.is-active {
@@ -123,14 +127,43 @@
     cursor: pointer;
   }
 
-  body.menu-open::after {
+  .mobile-nav-panel__link--button {
+    appearance: none;
+    -webkit-appearance: none;
+    cursor: pointer;
+    justify-content: flex-start;
+  }
+
+
+  body.menu-open:not(.spotlight-enabled)::after {
     content: '';
     position: fixed;
     inset: 0;
     background: rgba(0, 0, 0, 0.44);
     z-index: 150;
   }
+
+  body.spotlight-enabled .mobile-nav-panel.showMenu::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: -1;
+    background: radial-gradient(
+      circle at 52% 42%,
+      rgba(255, 248, 199, 0.16) 0,
+      rgba(255, 248, 199, 0.08) 18%,
+      rgba(255, 248, 199, 0.02) 30%,
+      rgba(0, 0, 0, 0) 58%
+    );
+  }
+
+  body.spotlight-enabled .mobile-nav-panel__spotlight {
+    border-color: rgba(184, 242, 152, 0.24);
+    box-shadow: 0 0 0 1px rgba(184, 242, 152, 0.08), 0 0 26px rgba(255, 248, 199, 0.08), inset 0 0 0 1px rgba(255, 255, 255, 0.02);
+  }
 }
+
 
 .alarm-toggle.is-active,
 .mobile-nav-panel__alarm.is-active,

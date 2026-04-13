@@ -505,7 +505,7 @@ body:not(.dark) .vault-link-card--toggle {
 }
 
 body:not(.dark) .vault-link-card--toggle::after {
-  content: 'Dark mode';
+  content: 'Spotlight';
   display: inline-flex;
   margin-top: 0.5rem;
   padding: 0.25rem 0.6rem;

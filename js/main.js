@@ -9,6 +9,116 @@ const reducedMotionMQ = window.matchMedia('(prefers-reduced-motion: reduce)');
 let audioContext;
 let alarmInterval;
 let pendingNavigation = null;
+let spotlightFrame = null;
+let spotlightOverlay;
+const spotlightButtons = document.querySelectorAll('[data-spotlight-trigger]');
+const spotlightStorageKey = 'vaultnet-spotlight-enabled';
+
+function ensureSpotlightOverlay() {
+  if (spotlightOverlay) return spotlightOverlay;
+  spotlightOverlay = document.querySelector('.spotlight-overlay');
+  if (!spotlightOverlay) {
+    spotlightOverlay = document.createElement('div');
+    spotlightOverlay.className = 'spotlight-overlay';
+    spotlightOverlay.setAttribute('aria-hidden', 'true');
+    body.appendChild(spotlightOverlay);
+  }
+  return spotlightOverlay;
+}
+
+function setupSpotlight() {
+  const mediaQuery = window.matchMedia('(pointer: fine)');
+
+  const updateSpotlightPosition = (x, y) => {
+    body.style.setProperty('--spotlight-x', `${x}px`);
+    body.style.setProperty('--spotlight-y', `${y}px`);
+  };
+
+  const resetSpotlightPosition = () => {
+    updateSpotlightPosition(window.innerWidth / 2, 220);
+  };
+
+  const updateSpotlightButtons = () => {
+    const isActive = body.classList.contains('spotlight-enabled');
+    spotlightButtons.forEach((button) => {
+      button.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+      button.classList.toggle('spotlight-is-active', isActive);
+      button.classList.remove('is-active');
+      button.hidden = false;
+      button.style.display = '';
+      const label = isActive ? 'Deaktivér spotlight' : 'Aktivér spotlight';
+      button.setAttribute('aria-label', label);
+      button.setAttribute('title', label);
+      button.innerHTML = isActive
+        ? '<span class="spotlight-button-label spotlight-button-label--two-line"><span>Deaktivér</span><span>spotlight</span></span>'
+        : '<span class="spotlight-button-label">Spotlight</span>';
+    });
+  };
+
+  const storeSpotlightState = (isActive) => {
+    try {
+      window.localStorage.setItem(spotlightStorageKey, isActive ? 'true' : 'false');
+    } catch (error) {}
+  };
+
+  const setSpotlight = (isActive) => {
+    const overlay = ensureSpotlightOverlay();
+    body.classList.toggle('spotlight-enabled', isActive);
+    overlay.classList.toggle('is-active', isActive);
+    if (!isActive && spotlightFrame) {
+      window.cancelAnimationFrame(spotlightFrame);
+      spotlightFrame = null;
+    }
+    updateSpotlightButtons();
+    storeSpotlightState(isActive);
+  };
+
+  const toggleSpotlight = (event) => {
+    const shouldKeepMenuOpen = Boolean(mobileMQ.matches && mobileMenu && mobileMenu.classList.contains('showMenu'));
+    if (event) {
+      event.preventDefault();
+      event.stopPropagation();
+      animateAlarmTrigger(event.currentTarget);
+    }
+    setSpotlight(!body.classList.contains('spotlight-enabled'));
+    if (shouldKeepMenuOpen) {
+      mobileMenu.hidden = false;
+      mobileMenu.classList.add('showMenu');
+      burger?.setAttribute('aria-expanded', 'true');
+      body.classList.add('menu-open');
+    }
+  };
+
+  const moveSpotlight = (event) => {
+    if (!mediaQuery.matches || !body.classList.contains('spotlight-enabled')) return;
+    const { clientX, clientY } = event;
+    if (spotlightFrame) window.cancelAnimationFrame(spotlightFrame);
+    spotlightFrame = window.requestAnimationFrame(() => {
+      updateSpotlightPosition(clientX, clientY);
+    });
+  };
+
+  ensureSpotlightOverlay();
+  resetSpotlightPosition();
+
+  try {
+    if (window.localStorage.getItem(spotlightStorageKey) === 'true') {
+      setSpotlight(true);
+    } else {
+      setSpotlight(false);
+    }
+  } catch (error) {
+    setSpotlight(false);
+  }
+
+  spotlightButtons.forEach((button) => {
+    button.addEventListener('click', toggleSpotlight);
+  });
+
+  window.addEventListener('mousemove', moveSpotlight, { passive: true });
+  window.addEventListener('resize', resetSpotlightPosition);
+  updateSpotlightButtons();
+}
 
 function ensureAlarmOverlay() {
   let overlay = document.querySelector('.alarm-overlay');
@@ -293,3 +403,4 @@ ensureAlarmOverlay();
 updateAlarmButtons();
 hideCurrentPageLinks();
 setupPageTransitions();
+setupSpotlight();
