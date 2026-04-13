@@ -404,3 +404,156 @@ updateAlarmButtons();
 hideCurrentPageLinks();
 setupPageTransitions();
 setupSpotlight();
+
+
+function setupArticlePopups() {
+  const articleTriggers = document.querySelectorAll('[data-article-id]');
+  const articleModal = document.getElementById('article-modal');
+  const articleTitle = document.getElementById('article-modal-title');
+  const articleKicker = document.getElementById('article-modal-kicker');
+  const articleContent = document.getElementById('article-modal-content');
+  const articleCloseButtons = document.querySelectorAll('[data-article-close]');
+
+  if (!articleTriggers.length || !articleModal || !articleTitle || !articleContent) return;
+
+  const articleMedia = document.getElementById('article-modal-media');
+  const articleImage = document.getElementById('article-modal-image');
+
+  if (articleModal.parentElement !== body) {
+    body.appendChild(articleModal);
+  }
+
+  const articleLibrary = {
+    'bunker-tour': {
+      kicker: 'REGAN Vest // bunkeranlægget',
+      title: 'Rundvisning i bunkeren',
+      image: {
+        src: 'https://nordjyskemuseer.dk/wp-content/uploads/2022/10/5-Dagligstue-1-800x533.jpg',
+        alt: 'Interiør fra REGAN Vest bunkeren',
+        className: ''
+      },
+      html: `
+        <div class="article-modal__columns">
+          <div class="article-modal__column">
+            <p>Et besøg i REGAN Vest begynder i den ribbede indgangstunnel, hvor anlæggets særlige atomsikring allerede kan aflæses i arkitekturen. Herfra føres man videre 60 meter ned under jorden til krydspunktet med sluse, tonstunge trykdøre og dieselgeneratorer, som skulle holde anlægget i drift under en krise.</p>
+            <p>Rundvisningen går videre gennem de rum, hvor staten skulle fungere videre i en krigssituation. Der stoppes ved indre vagt, udenrigsministeriets møderum, kommunikationsafdeling og lægevagt, så både sikkerhed, teknik og daglig organisering træder frem som en samlet del af beredskabet.</p>
+          </div>
+          <div class="article-modal__column">
+            <h3>Regering, beredskab og hverdagsliv</h3>
+            <p>I forsvarsministeriets gang og regeringens situationsrum skifter fokus til de politiske beslutninger, trusselsbillederne og planerne for at holde landet samlet under ekstreme forhold. Rundvisningen berører også regentens rum og forklarer, hvorfor netop REGAN Vest blev tænkt som demokratiets sidste bastion.</p>
+            <p>Til sidst vises anlæggets ventilation, luftindtag og atomsikrede hulrumskonstruktion, før fortællingen bevæger sig ind i hverdagen: soverum, køkken, lagre, dagligstue og cafeteria viser, hvordan beboerne både skulle arbejde og leve i bunkeren over længere tid.</p>
+          </div>
+        </div>
+      `
+    },
+    'engineer-house': {
+      kicker: 'REGAN Vest // bolig og skalkeskjul',
+      title: 'Maskinmesterboligen',
+      image: {
+        src: 'https://nordjyskemuseer.dk/wp-content/uploads/2018/05/REGAN-Vest-Villa-16-9-800x450.jpg',
+        alt: 'Maskinmesterboligen ved REGAN Vest',
+        className: ''
+      },
+      html: `
+        <div class="article-modal__columns">
+          <div class="article-modal__column">
+            <p>Maskinmesterboligen fungerede som tjenestebolig for den maskinmester, der havde ansvar for den tekniske drift af REGAN Vest. Huset blev opført samtidig med bunkeren og stod færdigt i 1966, to år før selve anlægget. Placeringen var nøje valgt, fordi boligen også skulle skærme for indkig til bunkerens indgangsparti.</p>
+            <p>Boligen fik derfor en dobbelt funktion: et almindeligt familiehjem på overfladen og et diskret skalkeskjul for det hemmelige anlæg nedenunder. Den rolle beholdt huset helt frem til 2010, da den sidste maskinmester flyttede ud.</p>
+          </div>
+          <div class="article-modal__column">
+            <h3>Et 1980-hjem med personlige spor</h3>
+            <p>I dag er huset indrettet som et hjem anno 1980, hvor besøgende kan gå gennem rummene, sætte sig i møblerne, bladre i ugeblade, høre radio, se fjernsyn og møde periodens hverdagsting helt tæt på. Museet bruger netop den genkendelige boligramme til at vise, hvordan den kolde krig også fandtes i det helt almindelige familieliv.</p>
+            <p>Rundt omkring i huset møder man familiens egne fortællinger på skærme. De beskriver, hvordan det var at bo med en hemmelig bunker i baghaven, og hvordan tidens sikkerhedstænkning og hemmeligholdelse blev en del af hverdagen.</p>
+          </div>
+        </div>
+      `
+    },
+    'cold-war-exhibit': {
+      kicker: 'REGAN Vest // udstilling og samfund',
+      title: 'Udstilling om den kolde krig',
+      image: {
+        src: 'img/articles/cold-war-exhibition-top.webp',
+        alt: 'Kort og planlægningsmateriale fra udstillingen om den kolde krig',
+        className: 'article-modal__image--cold-war',
+        objectPosition: '82% center'
+      },
+      html: `
+        <div class="article-modal__columns">
+          <div class="article-modal__column">
+            <p>Udstillingen om den kolde krig tager afsæt i den alvor, som også kom til udtryk i folderen <em>Hvis krigen kommer</em>, der i 1962 blev sendt ud til alle danske husstande. Herfra foldes fortællingen ud om danskernes hverdag i en tid præget af atomtrussel, beredskabstænkning og internationale spændinger.</p>
+            <p>Udstillingen er bygget op som selvstændige temaøer, som kan opleves hver for sig. Emnerne spænder fra atomkraft og frygten for atomkrig til civilt beredskab, skjult planlægning og bunkerens særlige konstruktion. Den indledes med et overblik over de internationale begivenheder, der formede perioden.</p>
+          </div>
+          <div class="article-modal__column">
+            <h3>Danmark mellem håb, frygt og planlægning</h3>
+            <p>Formidlingen viser, hvordan den nye atomteknologi både blev opfattet som et løfte om billig energi og som grundlag for altødelæggende våben. Samtidig sættes der fokus på de politiske spændinger i Danmark, blandt andet debatten om NATO og de kulturelle spor, som konflikten satte i litteratur, kunst og musik.</p>
+            <p>Udstillingen peger også på de skjulte forberedelser bag samfundets overflade: lister over biler og boliger, der kunne inddrages under krig, lagre med udstyr til befolkningen og REGAN Vests konstruktion, som på centrale punkter fulgte NATO's anbefalinger til atomsikrede regeringsbunkere.</p>
+          </div>
+        </div>
+      `
+    }
+  };
+  let previousFocus = null;
+
+  const openArticle = (articleId, trigger) => {
+    const article = articleLibrary[articleId];
+    if (!article) return;
+    previousFocus = trigger || document.activeElement;
+    articleKicker.textContent = article.kicker;
+    articleTitle.textContent = article.title;
+    articleContent.innerHTML = article.html;
+    if (articleMedia && articleImage && article.image) {
+      articleImage.src = article.image.src;
+      articleImage.alt = article.image.alt || '';
+      articleImage.className = 'article-modal__image';
+      if (article.image.className) {
+        articleImage.classList.add(article.image.className);
+      }
+      articleImage.style.objectPosition = article.image.objectPosition || '';
+      articleMedia.hidden = false;
+    } else if (articleMedia && articleImage) {
+      articleImage.src = '';
+      articleImage.alt = '';
+      articleImage.className = 'article-modal__image';
+      articleImage.style.objectPosition = '';
+      articleMedia.hidden = true;
+    }
+    articleModal.hidden = false;
+    articleModal.setAttribute('aria-hidden', 'false');
+    body.classList.add('article-modal-open');
+    setTimeout(() => {
+      const closeButton = articleModal.querySelector('.article-modal__close');
+      closeButton && closeButton.focus();
+    }, 0);
+  };
+
+  const closeArticle = () => {
+    articleModal.hidden = true;
+    articleModal.setAttribute('aria-hidden', 'true');
+    body.classList.remove('article-modal-open');
+    articleContent.innerHTML = '';
+    if (articleMedia && articleImage) {
+      articleImage.src = '';
+      articleImage.alt = '';
+      articleMedia.hidden = true;
+    }
+    if (previousFocus && typeof previousFocus.focus === 'function') {
+      previousFocus.focus();
+    }
+  };
+
+  articleTriggers.forEach((trigger) => {
+    trigger.addEventListener('click', () => openArticle(trigger.dataset.articleId, trigger));
+  });
+
+  articleCloseButtons.forEach((button) => {
+    button.addEventListener('click', closeArticle);
+  });
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && !articleModal.hidden) {
+      closeArticle();
+    }
+  });
+}
+
+setupArticlePopups();

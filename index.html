@@ -20,6 +20,7 @@
   <link rel="manifest" href="site.webmanifest">
   <title>Vault Net | Forside</title>
   <link rel="stylesheet" href="css/v25-polish.css">
+  <link rel="stylesheet" href="css/article-popups.css">
 </head>
 <body id="frontpage">
   <header class="site-header">
@@ -106,23 +107,40 @@
       </aside>
     </section>
 
-    <section class="vault-link-grid" aria-label="Vigtige moduler">
-      <a class="vault-link-card" href="instruction.html">
+    <section class="vault-link-grid vault-link-grid--articles" aria-label="Artikler om REGAN Vest">
+      <button class="vault-link-card vault-article-trigger" type="button" data-article-id="bunker-tour" aria-haspopup="dialog" aria-controls="article-modal">
         <span class="vault-link-card__index">01</span>
-        <h2>Nærkontakt</h2>
-        <p>Læs protokoller, undersøg grafikken og få de vigtigste råd direkte fra den taktiske terminal.</p>
-      </a>
-      <a class="vault-link-card" href="register.html">
+        <h2>Bunkeranlægget</h2>
+        <p>Åbn artiklen om tunnelen, de tekniske rum og de centrale funktioner i REGAN Vests skjulte anlæg.</p>
+      </button>
+      <button class="vault-link-card vault-article-trigger" type="button" data-article-id="engineer-house" aria-haspopup="dialog" aria-controls="article-modal">
         <span class="vault-link-card__index">02</span>
-        <h2>Indberet</h2>
-        <p>Send feltlog med position, behov og status til systemet, når hændelser skal registreres hurtigt.</p>
-      </a>
-      <a class="vault-link-card vault-link-card--toggle" id="spotlight-card-link" href="404.html" aria-label="Gå til 404-siden">
+        <h2>Familien over bunkeren</h2>
+        <p>Åbn artiklen om maskinmesterboligen, hverdagen i huset og rollen som diskret skalkeskjul.</p>
+      </button>
+      <button class="vault-link-card vault-article-trigger" type="button" data-article-id="cold-war-exhibit" aria-haspopup="dialog" aria-controls="article-modal">
         <span class="vault-link-card__index">03</span>
-        <h2>404</h2>
-        <p>Åbn 404-siden for supplerende systeminfo og ekstra funktioner i terminalen.</p>
-      </a>
+        <h2>Den kolde krigs Danmark</h2>
+        <p>Åbn artiklen om atomfrygt, civilt beredskab og udstillingens fortælling om livet under spændingen mellem øst og vest.</p>
+      </button>
     </section>
+
+    <div class="article-modal" id="article-modal" hidden aria-hidden="true">
+      <div class="article-modal__backdrop" data-article-close></div>
+      <section class="article-modal__dialog" role="dialog" aria-modal="true" aria-labelledby="article-modal-title">
+        <button class="article-modal__close" type="button" aria-label="Luk artikel" data-article-close>
+          <span aria-hidden="true">×</span>
+        </button>
+        <div class="article-modal__scroll">
+          <figure class="article-modal__media" id="article-modal-media" hidden>
+            <img class="article-modal__image" id="article-modal-image" src="" alt="">
+          </figure>
+          <p class="article-modal__eyebrow" id="article-modal-kicker">REGAN Vest // artikel</p>
+          <h2 class="article-modal__title" id="article-modal-title">Artikel</h2>
+          <div class="article-modal__content" id="article-modal-content"></div>
+        </div>
+      </section>
+    </div>
   </main>
 
   <footer class="site-footer">
