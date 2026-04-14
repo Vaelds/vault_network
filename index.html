@@ -102,26 +102,57 @@
           <ul class="vault-side-panel__list">
             <li>Få direkte adgang til varsling, vejledning og feltlog</li>
             <li>Navigér mellem bunkerens vigtigste systemer fra forsiden</li>
+            <li>Åbn klassificerede artikler direkte i terminalen</li>
           </ul>
         </article>
       </aside>
     </section>
 
     <section class="vault-link-grid vault-link-grid--articles" aria-label="Artikler om REGAN Vest">
-      <button class="vault-link-card vault-article-trigger" type="button" data-article-id="bunker-tour" aria-haspopup="dialog" aria-controls="article-modal">
-        <span class="vault-link-card__index">01</span>
-        <h2>Bunkeranlægget</h2>
-        <p>Åbn artiklen om tunnelen, de tekniske rum og de centrale funktioner i REGAN Vests skjulte anlæg.</p>
+      <button class="vault-link-card vault-article-trigger vault-article-poster" type="button" data-article-id="bunker-tour" aria-haspopup="dialog" aria-controls="article-modal">
+        <span class="vault-article-poster__meta">
+          <span class="vault-article-poster__index">01</span>
+          <span class="vault-article-poster__stamp">Klassificeret</span>
+        </span>
+        <span class="vault-article-poster__frame">
+          <img src="img/articles/bunkeranlaegget.png" alt="" loading="lazy" aria-hidden="true">
+        </span>
+        <span class="vault-article-poster__body">
+          <span class="vault-article-poster__eyebrow">REGAN Vest // underjordisk kommandorum</span>
+          <h2>Strategisk kommandorum</h2>
+          <p>Åbn artiklen om tunnelen, de tekniske rum og de centrale funktioner i REGAN Vests skjulte anlæg.</p>
+          <span class="vault-article-poster__cta">Åbn artikel</span>
+        </span>
       </button>
-      <button class="vault-link-card vault-article-trigger" type="button" data-article-id="engineer-house" aria-haspopup="dialog" aria-controls="article-modal">
-        <span class="vault-link-card__index">02</span>
-        <h2>Familien over bunkeren</h2>
-        <p>Åbn artiklen om maskinmesterboligen, hverdagen i huset og rollen som diskret skalkeskjul.</p>
+      <button class="vault-link-card vault-article-trigger vault-article-poster" type="button" data-article-id="engineer-house" aria-haspopup="dialog" aria-controls="article-modal">
+        <span class="vault-article-poster__meta">
+          <span class="vault-article-poster__index">02</span>
+          <span class="vault-article-poster__stamp">Top secret</span>
+        </span>
+        <span class="vault-article-poster__frame">
+          <img src="img/articles/maskinmesterboligen.png" alt="" loading="lazy" aria-hidden="true">
+        </span>
+        <span class="vault-article-poster__body">
+          <span class="vault-article-poster__eyebrow">REGAN Vest // bolig og skalkeskjul</span>
+          <h2>Hemmelig base</h2>
+          <p>Åbn artiklen om maskinmesterboligen, hverdagen i huset og rollen som diskret skalkeskjul.</p>
+          <span class="vault-article-poster__cta">Åbn artikel</span>
+        </span>
       </button>
-      <button class="vault-link-card vault-article-trigger" type="button" data-article-id="cold-war-exhibit" aria-haspopup="dialog" aria-controls="article-modal">
-        <span class="vault-link-card__index">03</span>
-        <h2>Den kolde krigs Danmark</h2>
-        <p>Åbn artiklen om atomfrygt, civilt beredskab og udstillingens fortælling om livet under spændingen mellem øst og vest.</p>
+      <button class="vault-link-card vault-article-trigger vault-article-poster" type="button" data-article-id="cold-war-exhibit" aria-haspopup="dialog" aria-controls="article-modal">
+        <span class="vault-article-poster__meta">
+          <span class="vault-article-poster__index">03</span>
+          <span class="vault-article-poster__stamp">Analyse</span>
+        </span>
+        <span class="vault-article-poster__frame">
+          <img src="img/articles/kolde-krig-kort.png" alt="" loading="lazy" aria-hidden="true">
+        </span>
+        <span class="vault-article-poster__body">
+          <span class="vault-article-poster__eyebrow">REGAN Vest // udstilling og samfund</span>
+          <h2>Operation overblik</h2>
+          <p>Åbn artiklen om atomfrygt, civilt beredskab og udstillingens fortælling om livet under spændingen mellem øst og vest.</p>
+          <span class="vault-article-poster__cta">Åbn artikel</span>
+        </span>
       </button>
     </section>
 
@@ -132,12 +163,20 @@
           <span aria-hidden="true">×</span>
         </button>
         <div class="article-modal__scroll">
-          <figure class="article-modal__media" id="article-modal-media" hidden>
-            <img class="article-modal__image" id="article-modal-image" src="" alt="">
-          </figure>
-          <p class="article-modal__eyebrow" id="article-modal-kicker">REGAN Vest // artikel</p>
-          <h2 class="article-modal__title" id="article-modal-title">Artikel</h2>
-          <div class="article-modal__content" id="article-modal-content"></div>
+          <article class="article-modal__poster">
+            <div class="article-modal__meta">
+              <span class="article-modal__index" id="article-modal-index">01</span>
+              <span class="article-modal__stamp" id="article-modal-stamp">Klassificeret</span>
+            </div>
+            <figure class="article-modal__media" id="article-modal-media" hidden>
+              <img class="article-modal__image" id="article-modal-image" src="" alt="">
+            </figure>
+            <div class="article-modal__body">
+              <p class="article-modal__eyebrow" id="article-modal-kicker">REGAN Vest // artikel</p>
+              <h2 class="article-modal__title" id="article-modal-title">Artikel</h2>
+              <div class="article-modal__content" id="article-modal-content"></div>
+            </div>
+          </article>
         </div>
       </section>
     </div>
