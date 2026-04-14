@@ -243,10 +243,38 @@ body.article-modal-open footer {
     line-height: 1.62;
   }
 
+  .article-modal__content h3 {
+    margin-top: 1.75rem;
+  }
+
   .article-modal__close {
     top: 0.75rem;
     right: 0.75rem;
     width: 2.85rem;
     height: 2.85rem;
+  }
+}
+
+
+@media (max-width: 768px) {
+  .article-modal__column + .article-modal__column h3 {
+    margin-top: 1rem;
+  }
+
+  .article-modal__content {
+    padding-bottom: 1rem;
+  }
+
+  #frontpage .vault-hero__aside {
+    gap: 1rem !important;
+  }
+
+  #frontpage .vault-side-panel {
+    width: 100% !important;
+    margin: 0 !important;
+    min-height: 0 !important;
+    height: auto !important;
+    padding: 1.15rem 1.25rem !important;
+    align-self: stretch !important;
   }
 }
