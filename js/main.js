@@ -420,6 +420,7 @@ function setupArticlePopups() {
 
   const articleMedia = document.getElementById('article-modal-media');
   const articleImage = document.getElementById('article-modal-image');
+  const articleScroll = articleModal.querySelector('.article-modal__scroll');
 
   if (articleModal.parentElement !== body) {
     body.appendChild(articleModal);
@@ -513,6 +514,7 @@ function setupArticlePopups() {
     articleModal.hidden = false;
     articleModal.setAttribute('aria-hidden', 'false');
     body.classList.add('article-modal-open');
+    if (articleScroll) articleScroll.scrollTop = 0;
     setTimeout(() => {
       const closeButton = articleModal.querySelector('.article-modal__close');
       closeButton && closeButton.focus();
@@ -523,6 +525,7 @@ function setupArticlePopups() {
     articleModal.hidden = true;
     articleModal.setAttribute('aria-hidden', 'true');
     body.classList.remove('article-modal-open');
+    if (articleScroll) articleScroll.scrollTop = 0;
     articleContent.innerHTML = '';
     delete articleModal.dataset.articleId;
     if (articleMedia && articleImage) {

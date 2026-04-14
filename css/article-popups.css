@@ -1073,3 +1073,308 @@ body.article-modal-open footer {
     padding-bottom: 0 !important;
   }
 }
+
+
+/* v10 consolidated modal mobile fix: single scroll container + single viewport strategy */
+.article-modal__dialog {
+  animation: none;
+}
+
+.article-modal__poster,
+.article-modal__content > *:last-child {
+  padding-bottom: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+.article-modal__poster::after,
+.article-modal__scroll::after {
+  display: none !important;
+  content: none !important;
+}
+
+@media (max-width: 900px) {
+  .article-modal {
+    place-items: center !important;
+    align-items: center !important;
+    padding: 0.75rem !important;
+  }
+
+  .article-modal__dialog {
+    width: min(100%, calc(100vw - 1.5rem)) !important;
+    height: auto !important;
+    max-height: calc(100vh - 1.5rem) !important;
+    min-height: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    overflow: hidden !important;
+  }
+
+  @supports (height: 100dvh) {
+    .article-modal__dialog {
+      max-height: calc(100dvh - 1.5rem) !important;
+    }
+  }
+
+  .article-modal__scroll {
+    flex: 1 1 auto !important;
+    min-height: 0 !important;
+    height: auto !important;
+    max-height: none !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
+    padding: 1rem 1.2rem calc(3.5rem + env(safe-area-inset-bottom, 0px)) 1.2rem !important;
+    scroll-padding-bottom: calc(3.5rem + env(safe-area-inset-bottom, 0px));
+  }
+
+  .article-modal__title {
+    white-space: normal !important;
+    max-width: none !important;
+    font-size: clamp(1.95rem, 7.8vw, 3rem) !important;
+    line-height: 0.96;
+  }
+
+  .article-modal__close {
+    width: 2.1rem !important;
+    height: 2.1rem !important;
+    font-size: 1.2rem !important;
+    top: 0.85rem !important;
+    right: 0.85rem !important;
+    z-index: 4;
+  }
+}
+
+/* v12 narrow-viewport modal breathing room fix */
+@media (max-width: 900px) {
+  .article-modal {
+    place-items: center !important;
+    align-items: center !important;
+    padding: 0.9rem 0.8rem 1.35rem !important;
+  }
+
+  .article-modal__dialog {
+    width: min(100%, calc(100vw - 1.6rem)) !important;
+    max-height: calc(100vh - 2.25rem) !important;
+  }
+
+  @supports (height: 100dvh) {
+    .article-modal__dialog {
+      max-height: calc(100dvh - 2.25rem - env(safe-area-inset-bottom, 0px)) !important;
+    }
+  }
+
+  .article-modal__scroll {
+    padding: 0.95rem 1.15rem calc(6.5rem + env(safe-area-inset-bottom, 0px)) 1.15rem !important;
+    scroll-padding-bottom: calc(6.5rem + env(safe-area-inset-bottom, 0px));
+  }
+
+  .article-modal__media {
+    margin-bottom: 1rem !important;
+  }
+}
+
+@media (max-width: 900px) and (max-height: 860px) {
+  .article-modal {
+    padding-top: 0.75rem !important;
+    padding-bottom: 1.5rem !important;
+  }
+
+  .article-modal__dialog {
+    max-height: calc(100vh - 2.25rem) !important;
+  }
+
+  @supports (height: 100dvh) {
+    .article-modal__dialog {
+      max-height: calc(100dvh - 2.25rem - env(safe-area-inset-bottom, 0px)) !important;
+    }
+  }
+
+  .article-modal__image {
+    height: clamp(145px, 22dvh, 210px) !important;
+    aspect-ratio: auto !important;
+  }
+}
+
+/* v14 remove inner card look and let short articles end naturally */
+.article-modal__poster {
+  background: transparent !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+.article-modal__meta {
+  padding-right: 4.2rem;
+}
+
+.article-modal__media {
+  border-radius: 0 !important;
+}
+
+@media (max-width: 900px) {
+  .article-modal__dialog {
+    display: block !important;
+    height: auto !important;
+  }
+
+  .article-modal__scroll {
+    display: block !important;
+    flex: 0 1 auto !important;
+    height: auto !important;
+    max-height: calc(100vh - 2.25rem) !important;
+    padding: 0.95rem 1.15rem calc(2.25rem + env(safe-area-inset-bottom, 0px)) 1.15rem !important;
+    scroll-padding-bottom: calc(2.25rem + env(safe-area-inset-bottom, 0px));
+  }
+
+  @supports (height: 100dvh) {
+    .article-modal__scroll {
+      max-height: calc(100dvh - 2.25rem - env(safe-area-inset-bottom, 0px)) !important;
+    }
+  }
+
+  .article-modal__poster {
+    border-radius: 0 !important;
+    padding: 0 !important;
+    margin-bottom: 0 !important;
+  }
+
+  .article-modal__meta {
+    padding-right: 3.2rem !important;
+  }
+
+  .article-modal__body {
+    padding-bottom: 0 !important;
+  }
+}
+
+/* v15 ensure visible bottom edge on narrow/mobile viewports */
+@media (max-width: 900px) {
+  .article-modal {
+    place-items: start center !important;
+    padding: 0.75rem 0.75rem 3.6rem 0.75rem !important;
+  }
+
+  .article-modal__dialog {
+    display: flex !important;
+    flex-direction: column !important;
+    width: min(100%, calc(100vw - 1.5rem)) !important;
+    height: auto !important;
+    max-height: calc(100vh - 4.35rem) !important;
+    margin: 0 !important;
+    overflow: hidden !important;
+  }
+
+  @supports (height: 100dvh) {
+    .article-modal__dialog {
+      max-height: calc(100dvh - 4.35rem - env(safe-area-inset-bottom, 0px)) !important;
+    }
+  }
+
+  .article-modal__scroll {
+    flex: 1 1 auto !important;
+    min-height: 0 !important;
+    height: auto !important;
+    max-height: none !important;
+    overflow-y: auto !important;
+    padding: 0.95rem 1.1rem calc(5.25rem + env(safe-area-inset-bottom, 0px)) 1.1rem !important;
+    scroll-padding-bottom: calc(5.25rem + env(safe-area-inset-bottom, 0px)) !important;
+  }
+
+  .article-modal__dialog::after {
+    inset: 9px !important;
+    border-radius: 19px !important;
+  }
+
+  .article-modal__poster,
+  .article-modal__body {
+    margin-bottom: 0 !important;
+    padding-bottom: 0 !important;
+  }
+}
+
+@media (max-width: 900px) and (max-height: 860px) {
+  .article-modal {
+    padding-bottom: 3.85rem !important;
+  }
+
+  .article-modal__dialog {
+    max-height: calc(100vh - 4.6rem) !important;
+  }
+
+  @supports (height: 100dvh) {
+    .article-modal__dialog {
+      max-height: calc(100dvh - 4.6rem - env(safe-area-inset-bottom, 0px)) !important;
+    }
+  }
+
+  .article-modal__image {
+    height: clamp(130px, 19dvh, 185px) !important;
+  }
+}
+
+/* v16 harmonize short and long mobile article popups */
+@media (max-width: 900px) {
+  .article-modal {
+    place-items: start center !important;
+    padding: 0.75rem 0.75rem 2.3rem 0.75rem !important;
+  }
+
+  .article-modal__dialog {
+    display: block !important;
+    width: min(100%, calc(100vw - 1.5rem)) !important;
+    height: auto !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    margin: 0 !important;
+    overflow: hidden !important;
+  }
+
+  .article-modal__scroll {
+    display: block !important;
+    flex: 0 1 auto !important;
+    min-height: 0 !important;
+    height: auto !important;
+    max-height: calc(100vh - 3.05rem) !important;
+    overflow-y: auto !important;
+    padding: 0.95rem 1.1rem calc(3.1rem + env(safe-area-inset-bottom, 0px)) 1.1rem !important;
+    scroll-padding-bottom: calc(3.1rem + env(safe-area-inset-bottom, 0px)) !important;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  @supports (height: 100dvh) {
+    .article-modal__scroll {
+      max-height: calc(100dvh - 3.05rem - env(safe-area-inset-bottom, 0px)) !important;
+    }
+  }
+
+  .article-modal__poster,
+  .article-modal__body,
+  .article-modal__content > *:last-child {
+    margin-bottom: 0 !important;
+    padding-bottom: 0 !important;
+  }
+
+  .article-modal__dialog::after {
+    inset: 9px !important;
+    border-radius: 19px !important;
+  }
+}
+
+@media (max-width: 900px) and (max-height: 860px) {
+  .article-modal {
+    padding-bottom: 2.55rem !important;
+  }
+
+  .article-modal__scroll {
+    max-height: calc(100vh - 3.3rem) !important;
+  }
+
+  @supports (height: 100dvh) {
+    .article-modal__scroll {
+      max-height: calc(100dvh - 3.3rem - env(safe-area-inset-bottom, 0px)) !important;
+    }
+  }
+}
