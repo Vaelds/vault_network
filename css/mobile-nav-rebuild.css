@@ -171,3 +171,23 @@
   border-color: rgba(255, 92, 92, 0.3) !important;
   box-shadow: 0 0 0 1px rgba(255, 92, 92, 0.22), 0 0 24px rgba(130, 12, 12, 0.24), inset 0 0 0 1px rgba(255, 255, 255, 0.03) !important;
 }
+
+
+@media (max-width: 768px) {
+  .mobile-nav-panel__spotlight-toggle .spotlight-icon-button,
+  .mobile-nav-panel__spotlight-toggle .spotlight-icon-button:hover,
+  .mobile-nav-panel__spotlight-toggle .spotlight-icon-button:focus-visible,
+  .mobile-nav-panel__spotlight-toggle .spotlight-icon-button.spotlight-is-active {
+    background: transparent !important;
+    border: 0 !important;
+    box-shadow: none !important;
+    color: inherit !important;
+  }
+
+  body.spotlight-enabled .mobile-nav-panel__spotlight,
+  body.spotlight-enabled .mobile-nav-panel__spotlight-toggle,
+  body.spotlight-enabled .mobile-nav-panel__spotlight-toggle .spotlight-icon-button {
+    border-color: transparent !important;
+    background: transparent !important;
+  }
+}

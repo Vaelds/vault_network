@@ -2034,3 +2034,121 @@ body.spotlight-enabled::after {
   }
 }
 
+
+
+/* ===== spotlight icon buttons ===== */
+.spotlight-toggle-item {
+  display: flex;
+  align-items: center;
+}
+
+.spotlight-toggle-stack {
+  position: relative;
+  display: inline-grid;
+  place-items: center;
+}
+
+.spotlight-toggle-stack > * {
+  grid-area: 1 / 1;
+}
+
+.spotlight-toggle-stack--desktop {
+  width: 4.75rem;
+  min-height: 4.75rem;
+}
+
+.spotlight-toggle-stack--mobile {
+  width: 7.25rem;
+  min-height: 7.25rem;
+}
+
+.spotlight-icon-button {
+  appearance: none;
+  -webkit-appearance: none;
+  border: 0 !important;
+  background: transparent !important;
+  padding: 0;
+  margin: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  filter: drop-shadow(0 10px 22px rgba(0, 0, 0, 0.42));
+  transition: transform 0.18s ease, filter 0.18s ease;
+}
+
+.spotlight-icon-button:hover,
+.spotlight-icon-button:focus-visible {
+  transform: translateY(-1px);
+  filter: drop-shadow(0 14px 26px rgba(0, 0, 0, 0.5));
+  outline: none;
+}
+
+.spotlight-icon-button[hidden] {
+  display: none !important;
+}
+
+.spotlight-icon-button img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.spotlight-icon-button--taend img,
+.spotlight-icon-button--sluk img {
+  pointer-events: none;
+  user-select: none;
+}
+
+.mobile-nav-panel__spotlight-toggle {
+  margin-top: 0.9rem;
+  display: flex;
+  justify-content: flex-start;
+}
+
+
+/* ===== v41 spotlight next to panic button ===== */
+.spotlight-toggle-stack--desktop {
+  width: clamp(3.9rem, 5.2vw, 4.65rem);
+  min-height: clamp(3.9rem, 5.2vw, 4.65rem);
+  flex: 0 0 auto;
+}
+
+.spotlight-toggle-stack--mobile {
+  width: 4.4rem;
+  min-height: 4.4rem;
+}
+
+.nav-actions .spotlight-toggle-stack {
+  display: inline-grid;
+  align-self: center;
+}
+
+.spotlight-icon-button {
+  filter: drop-shadow(0 12px 24px rgba(0, 0, 0, 0.48));
+}
+
+.spotlight-icon-button:hover,
+.spotlight-icon-button:focus-visible {
+  filter: drop-shadow(0 16px 28px rgba(0, 0, 0, 0.54));
+}
+
+.mobile-nav-panel__utility-row {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.75rem;
+  margin-top: 0.9rem;
+}
+
+.mobile-nav-panel__utility-row .mobile-nav-panel__spotlight-toggle {
+  margin-top: 0;
+  flex: 0 0 auto;
+}
+
+.mobile-nav-panel__utility-row .mobile-nav-panel__alarm {
+  width: auto;
+  min-width: 0;
+  flex: 1 1 auto;
+  margin-top: 0 !important;
+}

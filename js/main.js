@@ -41,17 +41,17 @@ function setupSpotlight() {
   const updateSpotlightButtons = () => {
     const isActive = body.classList.contains('spotlight-enabled');
     spotlightButtons.forEach((button) => {
-      button.setAttribute('aria-pressed', isActive ? 'true' : 'false');
-      button.classList.toggle('spotlight-is-active', isActive);
+      const buttonState = button.dataset.spotlightState;
+      const shouldShow = isActive ? buttonState === 'on' : buttonState === 'off';
+      button.hidden = !shouldShow;
+      button.setAttribute('aria-pressed', shouldShow ? 'true' : 'false');
+      button.classList.toggle('spotlight-is-active', shouldShow);
       button.classList.remove('is-active');
-      button.hidden = false;
-      button.style.display = '';
-      const label = isActive ? 'Deaktivér spotlight' : 'Aktivér spotlight';
+      button.setAttribute('tabindex', shouldShow ? '0' : '-1');
+      button.disabled = !shouldShow;
+      const label = buttonState === 'on' ? 'Sluk spotlight' : 'Tænd spotlight';
       button.setAttribute('aria-label', label);
       button.setAttribute('title', label);
-      button.innerHTML = isActive
-        ? '<span class="spotlight-button-label spotlight-button-label--two-line"><span>Deaktivér</span><span>spotlight</span></span>'
-        : '<span class="spotlight-button-label">Spotlight</span>';
     });
   };
 

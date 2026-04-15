@@ -38,7 +38,16 @@
         <li><a class="menuItem" href="instruction.html">Nærkontakt</a></li>
         <li><a class="menuItem" href="register.html">Indberet</a></li>
         <li><a class="menuItem active" href="404.html">404</a></li>
-        <li><button class="menuItem menuItem--button spotlight-menu-button" type="button" data-spotlight-trigger aria-pressed="false" aria-label="Aktivér spotlight">Spotlight</button></li>
+        <li class="spotlight-toggle-item">
+          <div class="spotlight-toggle-stack spotlight-toggle-stack--desktop" aria-label="Spotlight kontrol">
+            <button class="spotlight-icon-button spotlight-icon-button--taend" type="button" data-spotlight-trigger data-spotlight-state="off" aria-pressed="false" aria-label="Tænd spotlight">
+              <img src="img/taend.webp" alt="" width="96" height="96">
+            </button>
+            <button class="spotlight-icon-button spotlight-icon-button--sluk" type="button" data-spotlight-trigger data-spotlight-state="on" aria-pressed="true" aria-label="Sluk spotlight" hidden>
+              <img src="img/sluk.webp" alt="" width="96" height="96">
+            </button>
+          </div>
+        </li>
       </ul>
 
       <div class="nav-actions">
@@ -55,7 +64,16 @@
         <a class="mobile-nav-panel__link" href="instruction.html">Nærkontakt</a>
         <a class="mobile-nav-panel__link" href="register.html">Indberet</a>
         <a class="mobile-nav-panel__link is-active" href="404.html">404</a>
-        <button class="mobile-nav-panel__link mobile-nav-panel__link--button mobile-nav-panel__spotlight" type="button" data-spotlight-trigger aria-pressed="false" aria-label="Aktivér spotlight">Spotlight</button>
+        <div class="mobile-nav-panel__spotlight-toggle">
+          <div class="spotlight-toggle-stack spotlight-toggle-stack--mobile" aria-label="Spotlight kontrol">
+            <button class="spotlight-icon-button spotlight-icon-button--taend" type="button" data-spotlight-trigger data-spotlight-state="off" aria-pressed="false" aria-label="Tænd spotlight">
+              <img src="img/taend.webp" alt="" width="120" height="120">
+            </button>
+            <button class="spotlight-icon-button spotlight-icon-button--sluk" type="button" data-spotlight-trigger data-spotlight-state="on" aria-pressed="true" aria-label="Sluk spotlight" hidden>
+              <img src="img/sluk.webp" alt="" width="120" height="120">
+            </button>
+          </div>
+        </div>
         <button class="mobile-nav-panel__alarm" type="button" data-alarm-trigger data-alarm-on-text="Stop alarm" data-alarm-off-text="Rød alarm" aria-pressed="false" aria-label="Aktivér eller deaktiver rød alarm i baggrunden">Rød alarm</button>
       </div>
     </nav>

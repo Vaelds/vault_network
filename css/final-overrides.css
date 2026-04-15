@@ -286,3 +286,35 @@ body.dark .vault-link-card--toggle::after {
   content: none !important;
   display: none !important;
 }
+
+
+/* ===== v41 spotlight icon placement beside panic ===== */
+@media (min-width: 769px) {
+  .site-header .nav-actions .spotlight-toggle-stack--desktop {
+    margin-right: -0.05rem !important;
+  }
+
+  .site-header .nav-actions .spotlight-icon-button,
+  .site-header .nav-actions .spotlight-icon-button:hover,
+  .site-header .nav-actions .spotlight-icon-button:focus-visible {
+    background: transparent !important;
+    border: 0 !important;
+    box-shadow: none !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .mobile-nav-panel__utility-row {
+    display: flex !important;
+    align-items: center !important;
+    gap: 0.75rem !important;
+  }
+
+  .mobile-nav-panel__utility-row .mobile-nav-panel__spotlight-toggle {
+    justify-content: flex-start !important;
+  }
+
+  .mobile-nav-panel__utility-row .mobile-nav-panel__alarm {
+    margin-top: 0 !important;
+  }
+}
