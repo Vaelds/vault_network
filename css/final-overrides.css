@@ -318,3 +318,9 @@ body.dark .vault-link-card--toggle::after {
     margin-top: 0 !important;
   }
 }
+
+@media (max-width: 768px) {
+  .site-header .nav-actions .spotlight-toggle-stack--desktop {
+    display: none !important;
+  }
+}

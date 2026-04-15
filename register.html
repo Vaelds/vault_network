@@ -40,19 +40,17 @@
         <li><a class="menuItem" href="instruction.html">Nærkontakt</a></li>
         <li><a class="menuItem active" href="register.html">Indberet</a></li>
         <li><a class="menuItem" href="404.html">404</a></li>
-        <li class="spotlight-toggle-item">
-          <div class="spotlight-toggle-stack spotlight-toggle-stack--desktop" aria-label="Spotlight kontrol">
-            <button class="spotlight-icon-button spotlight-icon-button--taend" type="button" data-spotlight-trigger data-spotlight-state="off" aria-pressed="false" aria-label="Tænd spotlight">
-              <img src="img/taend.webp" alt="" width="96" height="96">
-            </button>
-            <button class="spotlight-icon-button spotlight-icon-button--sluk" type="button" data-spotlight-trigger data-spotlight-state="on" aria-pressed="true" aria-label="Sluk spotlight" hidden>
-              <img src="img/sluk.webp" alt="" width="96" height="96">
-            </button>
-          </div>
-        </li>
       </ul>
 
       <div class="nav-actions">
+        <div class="spotlight-toggle-stack spotlight-toggle-stack--desktop" aria-label="Spotlight kontrol">
+          <button class="spotlight-icon-button spotlight-icon-button--taend" type="button" data-spotlight-trigger data-spotlight-state="off" aria-pressed="false" aria-label="Tænd spotlight">
+            <img src="img/taend.webp" alt="" width="96" height="96">
+          </button>
+          <button class="spotlight-icon-button spotlight-icon-button--sluk" type="button" data-spotlight-trigger data-spotlight-state="on" aria-pressed="true" aria-label="Sluk spotlight" hidden>
+            <img src="img/sluk.webp" alt="" width="96" height="96">
+          </button>
+        </div>
         <button id="alarm-toggle" class="theme-toggle alarm-toggle" type="button" data-alarm-trigger data-alarm-on-text="Stop alarm" data-alarm-off-text="Alarm" aria-pressed="false" aria-label="Aktivér eller deaktiver rød alarm i baggrunden">Alarm</button>
         <button class="burger" type="button" aria-label="Åbn menu" aria-controls="mobile-nav-panel" aria-expanded="false">
           <span class="line"></span>
@@ -66,17 +64,19 @@
         <a class="mobile-nav-panel__link" href="instruction.html">Nærkontakt</a>
         <a class="mobile-nav-panel__link is-active" href="register.html">Indberet</a>
         <a class="mobile-nav-panel__link" href="404.html">404</a>
-        <div class="mobile-nav-panel__spotlight-toggle">
-          <div class="spotlight-toggle-stack spotlight-toggle-stack--mobile" aria-label="Spotlight kontrol">
-            <button class="spotlight-icon-button spotlight-icon-button--taend" type="button" data-spotlight-trigger data-spotlight-state="off" aria-pressed="false" aria-label="Tænd spotlight">
-              <img src="img/taend.webp" alt="" width="120" height="120">
-            </button>
-            <button class="spotlight-icon-button spotlight-icon-button--sluk" type="button" data-spotlight-trigger data-spotlight-state="on" aria-pressed="true" aria-label="Sluk spotlight" hidden>
-              <img src="img/sluk.webp" alt="" width="120" height="120">
-            </button>
+        <div class="mobile-nav-panel__utility-row">
+          <div class="mobile-nav-panel__spotlight-toggle">
+            <div class="spotlight-toggle-stack spotlight-toggle-stack--mobile" aria-label="Spotlight kontrol">
+              <button class="spotlight-icon-button spotlight-icon-button--taend" type="button" data-spotlight-trigger data-spotlight-state="off" aria-pressed="false" aria-label="Tænd spotlight">
+                <img src="img/taend.webp" alt="" width="120" height="120">
+              </button>
+              <button class="spotlight-icon-button spotlight-icon-button--sluk" type="button" data-spotlight-trigger data-spotlight-state="on" aria-pressed="true" aria-label="Sluk spotlight" hidden>
+                <img src="img/sluk.webp" alt="" width="120" height="120">
+              </button>
+            </div>
           </div>
+          <button class="mobile-nav-panel__alarm" type="button" data-alarm-trigger data-alarm-on-text="Stop alarm" data-alarm-off-text="Rød alarm" aria-pressed="false" aria-label="Aktivér eller deaktiver rød alarm i baggrunden">Rød alarm</button>
         </div>
-        <button class="mobile-nav-panel__alarm" type="button" data-alarm-trigger data-alarm-on-text="Stop alarm" data-alarm-off-text="Rød alarm" aria-pressed="false" aria-label="Aktivér eller deaktiver rød alarm i baggrunden">Rød alarm</button>
       </div>
     </nav>
   </header>
