@@ -324,3 +324,203 @@ body.dark .vault-link-card--toggle::after {
     display: none !important;
   }
 }
+
+/* ===== v50 spotlight button redesign ===== */
+:root {
+  --vault-spotlight-shell-bg: linear-gradient(180deg, rgba(20, 29, 20, 0.96), rgba(7, 11, 8, 0.98));
+  --vault-spotlight-shell-border: rgba(184, 242, 152, 0.16);
+  --vault-spotlight-shell-glow: rgba(184, 242, 152, 0.12);
+  --vault-spotlight-shell-radius: 1.45rem;
+}
+
+.spotlight-toggle-stack {
+  position: relative;
+}
+
+.spotlight-icon-button,
+.spotlight-icon-button:hover,
+.spotlight-icon-button:focus-visible {
+  appearance: none !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 5.2rem !important;
+  height: 5.2rem !important;
+  padding: 0.45rem !important;
+  border-radius: var(--vault-spotlight-shell-radius) !important;
+  border: 1px solid var(--vault-spotlight-shell-border) !important;
+  background: var(--vault-spotlight-shell-bg) !important;
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.025),
+    0 12px 26px rgba(0, 0, 0, 0.34),
+    0 0 20px var(--vault-spotlight-shell-glow),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05),
+    inset 0 -12px 18px rgba(0, 0, 0, 0.18) !important;
+  transition: transform 160ms ease, box-shadow 160ms ease, border-color 160ms ease !important;
+  overflow: hidden !important;
+}
+
+.spotlight-icon-button::before {
+  content: '';
+  position: absolute;
+  inset: 0.3rem;
+  border-radius: calc(var(--vault-spotlight-shell-radius) - 0.35rem);
+  border: 1px solid rgba(184, 242, 152, 0.08);
+  pointer-events: none;
+}
+
+.spotlight-icon-button img {
+  display: block;
+  width: 100% !important;
+  height: auto !important;
+  max-width: 4.15rem;
+  filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.3));
+}
+
+.spotlight-icon-button:hover,
+.spotlight-icon-button:focus-visible {
+  transform: translateY(-1px) scale(1.02) !important;
+  border-color: rgba(184, 242, 152, 0.24) !important;
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.03),
+    0 14px 28px rgba(0, 0, 0, 0.38),
+    0 0 24px rgba(184, 242, 152, 0.16),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06),
+    inset 0 -12px 18px rgba(0, 0, 0, 0.22) !important;
+}
+
+.spotlight-icon-button.spotlight-is-active,
+body.spotlight-enabled .spotlight-icon-button[data-spotlight-state="on"] {
+  border-color: rgba(255, 248, 199, 0.24) !important;
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.04),
+    0 14px 30px rgba(0, 0, 0, 0.42),
+    0 0 26px rgba(255, 248, 199, 0.16),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06),
+    inset 0 -12px 18px rgba(0, 0, 0, 0.24) !important;
+}
+
+@media (min-width: 769px) {
+  .site-header .nav-actions .spotlight-toggle-stack--desktop {
+    margin-right: 0.1rem !important;
+  }
+
+  .site-header .nav-actions .spotlight-icon-button,
+  .site-header .nav-actions .spotlight-icon-button:hover,
+  .site-header .nav-actions .spotlight-icon-button:focus-visible {
+    width: 5.4rem !important;
+    height: 5.4rem !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .mobile-nav-panel__spotlight-toggle .spotlight-icon-button,
+  .mobile-nav-panel__spotlight-toggle .spotlight-icon-button:hover,
+  .mobile-nav-panel__spotlight-toggle .spotlight-icon-button:focus-visible,
+  .mobile-nav-panel__spotlight-toggle .spotlight-icon-button.spotlight-is-active {
+    width: 5rem !important;
+    height: 5rem !important;
+    padding: 0.38rem !important;
+    border: 1px solid var(--vault-spotlight-shell-border) !important;
+    background: var(--vault-spotlight-shell-bg) !important;
+    box-shadow:
+      0 0 0 1px rgba(255, 255, 255, 0.025),
+      0 10px 22px rgba(0, 0, 0, 0.34),
+      0 0 18px rgba(184, 242, 152, 0.1),
+      inset 0 1px 0 rgba(255, 255, 255, 0.05),
+      inset 0 -10px 16px rgba(0, 0, 0, 0.18) !important;
+  }
+
+  .mobile-nav-panel__spotlight-toggle .spotlight-icon-button img {
+    max-width: 3.9rem;
+  }
+
+  body.spotlight-enabled .mobile-nav-panel__spotlight,
+  body.spotlight-enabled .mobile-nav-panel__spotlight-toggle,
+  body.spotlight-enabled .mobile-nav-panel__spotlight-toggle .spotlight-icon-button {
+    border-color: transparent !important;
+    background: transparent !important;
+  }
+}
+
+/* v42 spotlight bulb icons */
+.spotlight-icon-button {
+  transform-origin: center center;
+  filter: drop-shadow(0 8px 14px rgba(0, 0, 0, 0.9));
+  transition: transform 0.18s ease, filter 0.18s ease;
+}
+
+.spotlight-icon-button:hover,
+.spotlight-icon-button:focus-visible {
+  transform: scale(1.1);
+  filter: drop-shadow(0 10px 18px rgba(0, 0, 0, 1));
+  outline: none;
+}
+
+.spotlight-icon-button img {
+  pointer-events: none;
+  user-select: none;
+}
+
+/* v43 spotlight bulb icons - frameless with larger hover */
+.spotlight-icon-button,
+.spotlight-icon-button:hover,
+.spotlight-icon-button:focus-visible,
+.spotlight-icon-button.spotlight-is-active,
+body.spotlight-enabled .spotlight-icon-button[data-spotlight-state="on"] {
+  padding: 0 !important;
+  border: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+  overflow: visible !important;
+}
+
+.spotlight-icon-button::before {
+  content: none !important;
+  display: none !important;
+}
+
+.spotlight-icon-button {
+  transform-origin: center center;
+  filter: drop-shadow(0 10px 18px rgba(0, 0, 0, 0.95)) !important;
+  transition: transform 0.18s ease, filter 0.18s ease !important;
+}
+
+.spotlight-icon-button:hover,
+.spotlight-icon-button:focus-visible {
+  transform: scale(1.2) !important;
+  filter: drop-shadow(0 12px 22px rgba(0, 0, 0, 1)) !important;
+  outline: none !important;
+}
+
+/* v51 popup stamps 50% larger and moved down so they are not clipped at the top */
+.article-modal__scroll {
+  padding-top: 4.7rem !important;
+}
+
+.article-modal__meta {
+  padding-top: 0.35rem !important;
+}
+
+.article-modal__stamp {
+  display: inline-block !important;
+  padding: 0.52rem 0.9rem !important;
+  font-size: 1.5em !important;
+  line-height: 1 !important;
+  letter-spacing: 0.14em !important;
+  transform: rotate(-3deg) translateY(0.2rem) !important;
+  transform-origin: center center !important;
+}
+
+@media (max-width: 900px) {
+  .article-modal__scroll {
+    padding-top: 4.15rem !important;
+  }
+
+  .article-modal__stamp {
+    font-size: 1.38em !important;
+    padding: 0.48rem 0.82rem !important;
+    transform: rotate(-3deg) translateY(0.14rem) !important;
+  }
+}

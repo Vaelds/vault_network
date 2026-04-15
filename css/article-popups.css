@@ -1453,3 +1453,61 @@ button.vault-link-card.vault-article-trigger.vault-article-poster:focus-visible 
     transform-origin: center center;
   }
 }
+
+/* v21 scroll masking: article content should pass beneath the inner frame at top and bottom */
+.article-modal__dialog {
+  isolation: isolate;
+}
+
+.article-modal__scroll {
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    transparent 0,
+    #000 1.15rem,
+    #000 calc(100% - 1.15rem),
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    transparent 0,
+    #000 1.15rem,
+    #000 calc(100% - 1.15rem),
+    transparent 100%
+  );
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+}
+
+@media (max-width: 900px) {
+  .article-modal__scroll {
+    -webkit-mask-image: linear-gradient(
+      to bottom,
+      transparent 0,
+      #000 0.95rem,
+      #000 calc(100% - 0.95rem),
+      transparent 100%
+    );
+    mask-image: linear-gradient(
+      to bottom,
+      transparent 0,
+      #000 0.95rem,
+      #000 calc(100% - 0.95rem),
+      transparent 100%
+    );
+  }
+}
+
+/* v22 sharp clip: hide article content sharply under the inner frame instead of fading */
+.article-modal__scroll {
+  -webkit-mask-image: none !important;
+  mask-image: none !important;
+  clip-path: inset(1.35rem 0 1.35rem 0);
+}
+
+@media (max-width: 900px) {
+  .article-modal__scroll {
+    clip-path: inset(1.05rem 0 1.05rem 0);
+  }
+}
