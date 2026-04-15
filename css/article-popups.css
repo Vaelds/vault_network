@@ -1378,3 +1378,78 @@ body.article-modal-open footer {
     }
   }
 }
+
+/* v19 smooth hover scaling: animate from current pulse state with red glow and 5% enlargement */
+@property --poster-pulse-scale {
+  syntax: '<number>';
+  inherits: false;
+  initial-value: 1;
+}
+
+@property --poster-hover-scale {
+  syntax: '<number>';
+  inherits: false;
+  initial-value: 1;
+}
+
+@property --poster-hover-lift {
+  syntax: '<length>';
+  inherits: false;
+  initial-value: 0px;
+}
+
+button.vault-link-card.vault-article-trigger.vault-article-poster {
+  --poster-pulse-scale: 1;
+  --poster-hover-scale: 1;
+  --poster-hover-lift: 0px;
+  transform: translate3d(0, var(--poster-hover-lift), 0) scale(calc(var(--poster-pulse-scale) * var(--poster-hover-scale))) !important;
+  transition:
+    --poster-hover-scale 520ms cubic-bezier(0.22, 1, 0.36, 1),
+    --poster-hover-lift 520ms cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 520ms cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 320ms ease,
+    filter 520ms cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform, box-shadow, filter;
+  animation: articlePosterPulseSmooth 7.5s ease-in-out infinite !important;
+}
+
+button.vault-link-card.vault-article-trigger.vault-article-poster:hover,
+button.vault-link-card.vault-article-trigger.vault-article-poster:focus-visible {
+  --poster-hover-scale: 1.05;
+  --poster-hover-lift: -6px;
+  animation-play-state: paused !important;
+  border-color: rgba(176, 42, 33, 0.8) !important;
+  box-shadow: 0 24px 44px rgba(0, 0, 0, 0.34), 0 0 0 1px rgba(176, 42, 33, 0.22), 0 0 24px rgba(176, 42, 33, 0.32), 0 0 52px rgba(176, 42, 33, 0.18), inset 0 0 0 1px rgba(80, 57, 24, 0.12) !important;
+  filter: saturate(1.03) brightness(1.01);
+}
+
+@keyframes articlePosterPulseSmooth {
+  0%, 100% {
+    --poster-pulse-scale: 0.992;
+  }
+  50% {
+    --poster-pulse-scale: 1.008;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  button.vault-link-card.vault-article-trigger.vault-article-poster {
+    --poster-pulse-scale: 1;
+    animation: none !important;
+    transition: transform 220ms ease, box-shadow 220ms ease, border-color 160ms ease, filter 220ms ease;
+    transform: translate3d(0, var(--poster-hover-lift), 0) scale(var(--poster-hover-scale)) !important;
+  }
+}
+
+/* v20 mobile spacing: extra room between article buttons so hover scaling does not overlap */
+@media (max-width: 768px) {
+  .vault-link-grid--articles {
+    gap: 2rem !important;
+    padding-block: 0.25rem 0.75rem;
+  }
+
+  button.vault-link-card.vault-article-trigger.vault-article-poster {
+    margin: 0 !important;
+    transform-origin: center center;
+  }
+}
