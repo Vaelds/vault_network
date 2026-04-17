@@ -22,6 +22,10 @@
   <link rel="manifest" href="site.webmanifest">
   <title>Vault Net | Nærkontakt</title>
   <link rel="stylesheet" href="css/v25-polish.css">
+  <link rel="stylesheet" href="css/matrix-theme.css">
+  <link rel="stylesheet" href="css/v33-matrix-audio-and-404-footer.css">
+  <link rel="stylesheet" href="css/v34-footer-unify-and-persistent-audio.css">
+  <link rel="stylesheet" href="css/v35-footer-and-audio-ui.css">
 </head>
 <body id="instruction">
   <header class="site-header">
@@ -42,6 +46,7 @@
       </ul>
 
       <div class="nav-actions">
+        <button class="matrix-toggle matrix-toggle--desktop" type="button" data-matrix-toggle aria-pressed="false" aria-label="Aktivér Matrix tema"><span class="matrix-toggle__glyph" aria-hidden="true"></span></button>
         <div class="spotlight-toggle-stack spotlight-toggle-stack--desktop" aria-label="Spotlight kontrol">
           <button class="spotlight-icon-button spotlight-icon-button--taend" type="button" data-spotlight-trigger data-spotlight-state="off" aria-pressed="false" aria-label="Tænd spotlight">
             <img src="img/lightbowl_on.png" alt="" width="96" height="96">
@@ -64,6 +69,7 @@
         <a class="mobile-nav-panel__link" href="register.html">Indberet</a>
         <a class="mobile-nav-panel__link" href="404.html">404</a>
         <div class="mobile-nav-panel__utility-row">
+          <button class="matrix-toggle matrix-toggle--mobile" type="button" data-matrix-toggle aria-pressed="false" aria-label="Aktivér Matrix tema"><span class="matrix-toggle__glyph" aria-hidden="true"></span></button>
           <div class="mobile-nav-panel__spotlight-toggle">
             <div class="spotlight-toggle-stack spotlight-toggle-stack--mobile" aria-label="Spotlight kontrol">
               <button class="spotlight-icon-button spotlight-icon-button--taend" type="button" data-spotlight-trigger data-spotlight-state="off" aria-pressed="false" aria-label="Tænd spotlight">
@@ -82,7 +88,7 @@
 
   <main>
     <section class="page-intro template-heading-block">
-      
+      <p class="eyebrow">SYSTEM // CIVIL DEFENSE NETWORK</p>
       <h1>Taktisk terminal</h1>
       <p class="subheading">Aktivér markeringerne og læs protokollerne fra kontrolpanelet</p>
     </section>
@@ -151,6 +157,7 @@
   </footer>
 
   <script src="js/main.js"></script>
+  <script src="js/matrix-theme.js"></script>
   <script src="js/instruction.js"></script>
 </body>
 </html>

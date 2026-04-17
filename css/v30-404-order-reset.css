@@ -1,0 +1,88 @@
+/* v30 404 matrix parity reset
+   The previous fixes did not beat the more specific nth-child grid placements
+   from matrix-theme.css, so cards could end up in implicit/overlapping areas.
+   This file resets the 404 page back to the normal document flow while keeping
+   the matrix colors and chrome. */
+
+body.matrix-theme#readme-page main {
+  width: min(1120px, calc(100% - 2rem)) !important;
+  margin: 0 auto !important;
+  overflow: visible !important;
+}
+
+body.matrix-theme#readme-page .readme-layout {
+  display: grid !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  grid-template-areas: none !important;
+  grid-auto-flow: row !important;
+  grid-auto-rows: auto !important;
+  gap: 1.25rem !important;
+  margin: 0 0 2rem !important;
+  align-items: stretch !important;
+  overflow: visible !important;
+}
+
+body.matrix-theme#readme-page .page-intro,
+body.matrix-theme#readme-page .readme-intro,
+body.matrix-theme#readme-page .readme-layout,
+body.matrix-theme#readme-page .readme-layout > article,
+body.matrix-theme#readme-page .readme-layout > article:nth-child(n) {
+  position: relative !important;
+  inset: auto !important;
+  left: auto !important;
+  right: auto !important;
+  top: auto !important;
+  bottom: auto !important;
+  transform: none !important;
+  translate: none !important;
+  float: none !important;
+  clear: none !important;
+  width: auto !important;
+  max-width: none !important;
+  min-width: 0 !important;
+  height: auto !important;
+  min-height: 0 !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+body.matrix-theme#readme-page .readme-layout > article:nth-child(n) {
+  display: block !important;
+  grid-area: auto !important;
+  grid-column: auto !important;
+  grid-row: auto !important;
+  order: 0 !important;
+  place-self: stretch !important;
+  align-self: stretch !important;
+  justify-self: stretch !important;
+  z-index: auto !important;
+  overflow: hidden !important;
+  contain: none !important;
+  clip-path: none !important;
+  background-clip: padding-box !important;
+}
+
+body.matrix-theme#readme-page .readme-layout > article:nth-child(1),
+body.matrix-theme#readme-page .readme-summary {
+  grid-column: 1 / -1 !important;
+}
+
+body.matrix-theme#readme-page main::before,
+body.matrix-theme#readme-page .readme-layout::before,
+body.matrix-theme#readme-page .readme-layout::after {
+  content: none !important;
+  display: none !important;
+}
+
+@media (max-width: 820px) {
+  body.matrix-theme#readme-page .readme-layout {
+    grid-template-columns: 1fr !important;
+  }
+
+  body.matrix-theme#readme-page .readme-layout > article:nth-child(1),
+  body.matrix-theme#readme-page .readme-summary {
+    grid-column: auto !important;
+  }
+}

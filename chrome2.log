@@ -1,0 +1,3 @@
+[4476:4476:0416/223745.785947:ERROR:content/browser/zygote_host/zygote_host_impl_linux.cc:101] Running as root without --no-sandbox is not supported. See https://crbug.com/638180.
+[0416/223745.859160:ERROR:third_party/crashpad/crashpad/util/linux/socket.cc:182] incorrect payload size 0
+[0416/223745.865528:ERROR:third_party/crashpad/crashpad/util/linux/socket.cc:182] incorrect payload size 0

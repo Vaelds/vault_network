@@ -291,7 +291,7 @@ body.dark .vault-link-card--toggle::after {
 /* ===== v41 spotlight icon placement beside panic ===== */
 @media (min-width: 769px) {
   .site-header .nav-actions .spotlight-toggle-stack--desktop {
-    margin-right: -0.05rem !important;
+    margin-right: 0 !important;
   }
 
   .site-header .nav-actions .spotlight-icon-button,
@@ -311,7 +311,7 @@ body.dark .vault-link-card--toggle::after {
   }
 
   .mobile-nav-panel__utility-row .mobile-nav-panel__spotlight-toggle {
-    justify-content: flex-start !important;
+    justify-content: center !important;
   }
 
   .mobile-nav-panel__utility-row .mobile-nav-panel__alarm {
@@ -522,5 +522,516 @@ body.spotlight-enabled .spotlight-icon-button[data-spotlight-state="on"] {
     font-size: 1.38em !important;
     padding: 0.48rem 0.82rem !important;
     transform: rotate(-3deg) translateY(0.14rem) !important;
+  }
+}
+
+
+/* v51 keep matrix button square in mobile dropdown */
+@media (max-width: 768px) {
+  .mobile-nav-panel__utility-row .matrix-toggle,
+  .mobile-nav-panel__utility-row .matrix-toggle--mobile,
+  body.matrix-theme .mobile-nav-panel__utility-row .matrix-toggle,
+  body.matrix-theme .mobile-nav-panel__utility-row .matrix-toggle--mobile {
+    width: 3.9rem !important;
+    min-width: 3.9rem !important;
+    max-width: 3.9rem !important;
+    height: 3.9rem !important;
+    min-height: 3.9rem !important;
+    max-height: 3.9rem !important;
+    flex: 0 0 3.9rem !important;
+    align-self: center !important;
+    aspect-ratio: 1 / 1 !important;
+    padding: 0 !important;
+  }
+}
+
+/* v53 request: shift spotlight icon 0.5rem left in header and mobile dropdown */
+@media (min-width: 769px) {
+  .site-header .nav-actions .spotlight-toggle-stack--desktop {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .mobile-nav-panel__utility-row {
+    justify-content: center !important;
+  }
+
+  .mobile-nav-panel__utility-row .mobile-nav-panel__spotlight-toggle,
+  .mobile-nav-panel__utility-row .spotlight-toggle-stack--mobile {
+    margin-left: 0 !important;
+  }
+}
+
+
+/* v71 center icon row and shift flashlight left */
+@media (max-width: 768px) {
+  .mobile-nav-panel__utility-row {
+    justify-content: center !important;
+    gap: 1rem !important;
+  }
+
+  .mobile-nav-panel__utility-row .matrix-toggle--mobile,
+  .mobile-nav-panel__utility-row .mobile-nav-panel__spotlight-toggle,
+  .mobile-nav-panel__utility-row .mobile-nav-panel__alarm {
+    flex: 0 0 auto !important;
+  }
+
+  .mobile-nav-panel__utility-row .mobile-nav-panel__alarm {
+    width: 4.2rem !important;
+    min-width: 4.2rem !important;
+    max-width: 4.2rem !important;
+  }
+}
+
+@media (min-width: 769px) {
+  .nav-actions {
+    gap: 1rem !important;
+  }
+
+  .nav-actions .spotlight-toggle-stack--desktop {
+    margin-left: 0 !important;
+  }
+}
+
+
+/* v81 desktop/mobile flashlight move further left */
+@media (min-width: 769px) {
+  .nav-actions {
+    gap: 1rem !important;
+  }
+
+  .nav-actions .spotlight-toggle-stack--desktop {
+    margin-left: 0 !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .mobile-nav-panel__utility-row {
+    justify-content: center !important;
+    gap: 1rem !important;
+  }
+
+  .mobile-nav-panel__utility-row .mobile-nav-panel__spotlight-toggle,
+  .mobile-nav-panel__utility-row .spotlight-toggle-stack--mobile {
+    margin-left: 0 !important;
+  }
+}
+
+
+/* v90 lock matrix button position on interaction */
+.matrix-toggle,
+.matrix-toggle:hover,
+.matrix-toggle:focus-visible,
+.matrix-toggle:active,
+body.matrix-theme .matrix-toggle,
+body.matrix-theme .matrix-toggle:hover,
+body.matrix-theme .matrix-toggle:focus-visible,
+body.matrix-theme .matrix-toggle:active {
+  transform-origin: center center !important;
+}
+
+.matrix-toggle:hover,
+.matrix-toggle:focus-visible,
+.matrix-toggle:active {
+  transform: scale(1.15) !important;
+}
+
+body.matrix-theme .matrix-toggle,
+body.matrix-theme .matrix-toggle:active {
+  transform: none !important;
+}
+
+@media (max-width: 768px) {
+  .mobile-nav-panel__utility-row .matrix-toggle--mobile,
+  .mobile-nav-panel__utility-row .matrix-toggle--mobile:hover,
+  .mobile-nav-panel__utility-row .matrix-toggle--mobile:focus-visible,
+  .mobile-nav-panel__utility-row .matrix-toggle--mobile:active {
+    transform-origin: center center !important;
+  }
+
+  .mobile-nav-panel__utility-row .matrix-toggle--mobile:hover,
+  .mobile-nav-panel__utility-row .matrix-toggle--mobile:focus-visible,
+  .mobile-nav-panel__utility-row .matrix-toggle--mobile:active {
+    transform: scale(1.15) !important;
+  }
+}
+
+@media (min-width: 769px) {
+  .nav-actions .spotlight-toggle-stack--desktop {
+    margin-left: 0 !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .mobile-nav-panel__utility-row .mobile-nav-panel__spotlight-toggle,
+  .mobile-nav-panel__utility-row .spotlight-toggle-stack--mobile {
+    margin-left: 0 !important;
+  }
+}
+
+
+
+
+
+/* v110 keep matrix button fixed with zero horizontal movement */
+@media (min-width: 769px) {
+  .nav-actions .matrix-toggle,
+  .nav-actions .matrix-toggle:hover,
+  .nav-actions .matrix-toggle:focus-visible,
+  .nav-actions .matrix-toggle:active,
+  .nav-actions .matrix-toggle.is-active,
+  body.matrix-theme .nav-actions .matrix-toggle,
+  body.matrix-theme .nav-actions .matrix-toggle:hover,
+  body.matrix-theme .nav-actions .matrix-toggle:focus-visible,
+  body.matrix-theme .nav-actions .matrix-toggle:active,
+  body.matrix-theme .nav-actions .matrix-toggle.is-active {
+    position: relative !important;
+    left: 0 !important;
+    right: auto !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    translate: none !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .mobile-nav-panel__utility-row .matrix-toggle,
+  .mobile-nav-panel__utility-row .matrix-toggle:hover,
+  .mobile-nav-panel__utility-row .matrix-toggle:focus-visible,
+  .mobile-nav-panel__utility-row .matrix-toggle:active,
+  .mobile-nav-panel__utility-row .matrix-toggle.is-active,
+  .mobile-nav-panel__utility-row .matrix-toggle--mobile,
+  .mobile-nav-panel__utility-row .matrix-toggle--mobile:hover,
+  .mobile-nav-panel__utility-row .matrix-toggle--mobile:focus-visible,
+  .mobile-nav-panel__utility-row .matrix-toggle--mobile:active,
+  .mobile-nav-panel__utility-row .matrix-toggle--mobile.is-active,
+  body.matrix-theme .mobile-nav-panel__utility-row .matrix-toggle,
+  body.matrix-theme .mobile-nav-panel__utility-row .matrix-toggle:hover,
+  body.matrix-theme .mobile-nav-panel__utility-row .matrix-toggle:focus-visible,
+  body.matrix-theme .mobile-nav-panel__utility-row .matrix-toggle:active,
+  body.matrix-theme .mobile-nav-panel__utility-row .matrix-toggle.is-active,
+  body.matrix-theme .mobile-nav-panel__utility-row .matrix-toggle--mobile,
+  body.matrix-theme .mobile-nav-panel__utility-row .matrix-toggle--mobile:hover,
+  body.matrix-theme .mobile-nav-panel__utility-row .matrix-toggle--mobile:focus-visible,
+  body.matrix-theme .mobile-nav-panel__utility-row .matrix-toggle--mobile:active,
+  body.matrix-theme .mobile-nav-panel__utility-row .matrix-toggle--mobile.is-active {
+    position: relative !important;
+    left: 0 !important;
+    right: auto !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    translate: none !important;
+  }
+}
+
+
+/* v140 match logo text spacing in normal and matrix modes */
+#logotype-wrapper .vault-brand,
+body.matrix-theme #logotype-wrapper .vault-brand {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 0 !important;
+}
+
+#logotype-wrapper .vault-brand__word,
+body.matrix-theme #logotype-wrapper .vault-brand__word {
+  position: static !important;
+  transform: none !important;
+  translate: none !important;
+  letter-spacing: 0.08em !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  flex: 0 0 auto !important;
+}
+
+#logotype-wrapper .vault-brand__word--left,
+body.matrix-theme #logotype-wrapper .vault-brand__word--left {
+  margin-right: 0.9rem !important;
+}
+
+#logotype-wrapper .vault-brand__word--right,
+body.matrix-theme #logotype-wrapper .vault-brand__word--right {
+  margin-left: 0.9rem !important;
+}
+
+#logotype-wrapper .vault-brand__icon,
+body.matrix-theme #logotype-wrapper .vault-brand__icon {
+  flex: 0 0 auto !important;
+  margin: 0 !important;
+  transform: none !important;
+  translate: none !important;
+}
+
+
+/* v150 center light bowl between Matrix and Panic on desktop and mobile */
+@media (min-width: 769px) {
+  .nav-actions {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 1rem !important;
+  }
+
+  .nav-actions .matrix-toggle--desktop,
+  .nav-actions .spotlight-toggle-stack--desktop,
+  .nav-actions #alarm-toggle.alarm-toggle {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    position: relative !important;
+    left: 0 !important;
+    right: 0 !important;
+  }
+
+  .nav-actions .spotlight-toggle-stack--desktop {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .mobile-nav-panel__utility-row {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 1rem !important;
+  }
+
+  .mobile-nav-panel__utility-row .matrix-toggle,
+  .mobile-nav-panel__utility-row .matrix-toggle--mobile,
+  .mobile-nav-panel__utility-row .mobile-nav-panel__spotlight-toggle,
+  .mobile-nav-panel__utility-row .spotlight-toggle-stack--mobile,
+  .mobile-nav-panel__utility-row .mobile-nav-panel__alarm {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+  }
+
+  .mobile-nav-panel__utility-row .mobile-nav-panel__spotlight-toggle,
+  .mobile-nav-panel__utility-row .spotlight-toggle-stack--mobile {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+}
+
+
+/* v160 restore spotlight button behavior after centering changes */
+.spotlight-toggle-stack {
+  position: relative !important;
+  display: inline-grid !important;
+  place-items: center !important;
+}
+
+.spotlight-icon-button[hidden] {
+  display: none !important;
+}
+
+.spotlight-icon-button,
+.spotlight-icon-button:hover,
+.spotlight-icon-button:focus-visible {
+  position: relative !important;
+  margin: 0 !important;
+}
+
+.spotlight-icon-button:hover,
+.spotlight-icon-button:focus-visible {
+  transform: scale(1.2) !important;
+}
+
+.spotlight-toggle-stack--desktop .spotlight-icon-button,
+.spotlight-toggle-stack--mobile .spotlight-icon-button {
+  grid-area: 1 / 1 !important;
+}
+
+@media (min-width: 769px) {
+  .nav-actions .spotlight-toggle-stack--desktop {
+    width: 5.2rem !important;
+    min-width: 5.2rem !important;
+    height: 5.2rem !important;
+    min-height: 5.2rem !important;
+    flex: 0 0 5.2rem !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .mobile-nav-panel__utility-row .mobile-nav-panel__spotlight-toggle,
+  .mobile-nav-panel__utility-row .spotlight-toggle-stack--mobile {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    width: 5.2rem !important;
+    min-width: 5.2rem !important;
+    height: 5.2rem !important;
+    min-height: 5.2rem !important;
+    flex: 0 0 5.2rem !important;
+  }
+
+  .mobile-nav-panel__utility-row .mobile-nav-panel__spotlight-toggle {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+}
+
+
+/* v170 restore light bowl rollover in matrix mode */
+body.matrix-theme .spotlight-icon-button:hover,
+body.matrix-theme .spotlight-icon-button:focus-visible {
+  transform: scale(1.2) !important;
+}
+
+body.matrix-theme .spotlight-icon-button[hidden] {
+  display: none !important;
+}
+
+body.matrix-theme .spotlight-toggle-stack > .spotlight-icon-button:not([hidden]) {
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+body.matrix-theme .spotlight-toggle-stack > .spotlight-icon-button[hidden] {
+  visibility: hidden !important;
+  opacity: 0 !important;
+}
+
+
+/* v181 restore desktop light bowl hover in matrix mode */
+@media (min-width: 769px) {
+  body.matrix-theme .nav-actions .spotlight-toggle-stack--desktop,
+  body.matrix-theme .nav-actions .spotlight-toggle-stack--desktop:hover {
+    overflow: visible !important;
+  }
+
+  body.matrix-theme .nav-actions .spotlight-toggle-stack--desktop .spotlight-icon-button:not([hidden]) {
+    transform: scale(1) !important;
+    transition: transform 180ms ease, filter 180ms ease !important;
+  }
+
+  body.matrix-theme .nav-actions .spotlight-toggle-stack--desktop .spotlight-icon-button:not([hidden]):hover,
+  body.matrix-theme .nav-actions .spotlight-toggle-stack--desktop .spotlight-icon-button:not([hidden]):focus-visible {
+    transform: scale(1.2) !important;
+    filter: drop-shadow(0 16px 28px rgba(0, 0, 0, 0.72)) !important;
+    z-index: 3 !important;
+  }
+
+  body.matrix-theme .nav-actions .spotlight-toggle-stack--desktop .spotlight-icon-button[hidden] {
+    display: none !important;
+  }
+}
+
+
+
+
+
+/* v192 matrix topmenu: only hovered button glows */
+@media (min-width: 769px) {
+  body.matrix-theme .site-header .nav-container:hover .menu .menuItem,
+  body.matrix-theme .site-header .nav-container:hover .menu a,
+  body.matrix-theme .site-header .menu:hover .menuItem,
+  body.matrix-theme .site-header .menu:hover a {
+    border-color: rgba(111, 255, 173, 0.16) !important;
+    background: linear-gradient(180deg, rgba(8,16,12,0.94), rgba(4,10,7,0.98)) !important;
+    box-shadow:
+      inset 0 0 0 1px rgba(255,255,255,0.025),
+      inset 0 0 28px rgba(86,255,158,0.03),
+      0 14px 34px rgba(0,0,0,0.38) !important;
+    color: var(--matrix-text) !important;
+    text-shadow: none !important;
+  }
+
+  body.matrix-theme .site-header .menu .menuItem:hover,
+  body.matrix-theme .site-header .menu .menuItem:focus-visible,
+  body.matrix-theme .site-header .menu .menuItem.active:hover,
+  body.matrix-theme .site-header .menu .menuItem.active:focus-visible {
+    border-color: rgba(111, 255, 173, 0.48) !important;
+    background: linear-gradient(180deg, rgba(8,16,12,0.94), rgba(4,10,7,0.98)) !important;
+    box-shadow:
+      inset 0 0 0 1px rgba(255,255,255,0.03),
+      inset 0 0 22px rgba(86,255,158,0.06),
+      0 0 0 1px rgba(86,255,158,0.16),
+      0 0 16px rgba(86,255,158,0.14),
+      0 14px 28px rgba(0,0,0,0.42) !important;
+    color: #e8fff3 !important;
+    text-shadow:
+      0 0 10px rgba(86,255,158,0.28),
+      0 0 18px rgba(86,255,158,0.12) !important;
+  }
+
+  body.matrix-theme .site-header .menu .menuItem.active {
+    color: var(--matrix-text) !important;
+    text-shadow: none !important;
+  }
+
+  body.matrix-theme .site-header .menu .menuItem.active:hover,
+  body.matrix-theme .site-header .menu .menuItem.active:focus-visible {
+    color: #e8fff3 !important;
+  }
+}
+
+
+/* v200 matrix mode: remove background box showing behind 404 cards */
+body.matrix-theme#readme-page,
+body.matrix-theme#readme-page main,
+body.matrix-theme#readme-page .readme-layout {
+  overflow-x: hidden !important;
+}
+
+@media (max-width: 820px) {
+  body.matrix-theme#readme-page .readme-layout {
+    grid-template-columns: 1fr !important;
+    gap: 1.25rem !important;
+    isolation: isolate !important;
+  }
+
+  body.matrix-theme#readme-page .readme-layout > *,
+  body.matrix-theme#readme-page .readme-layout > *:hover,
+  body.matrix-theme#readme-page .readme-layout > *:focus-within {
+    position: relative !important;
+    left: 0 !important;
+    right: 0 !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    transform: none !important;
+    translate: none !important;
+    z-index: 1 !important;
+  }
+}
+
+
+/* v210 matrix 404 mobile: hide or make transparent the box behind the visible card */
+@media (max-width: 820px) {
+  body.matrix-theme#readme-page main {
+    position: relative !important;
+    overflow-x: hidden !important;
+  }
+
+  body.matrix-theme#readme-page main::before {
+    content: "" !important;
+    position: absolute !important;
+    left: 0 !important;
+    top: 0 !important;
+    bottom: 0 !important;
+    width: 2.15rem !important;
+    pointer-events: none !important;
+    z-index: 2 !important;
+    background:
+      linear-gradient(180deg, rgba(4, 7, 5, 0.98), rgba(7, 13, 9, 0.98)) !important;
+  }
+
+  body.matrix-theme#readme-page .readme-layout,
+  body.matrix-theme#readme-page .readme-layout > * {
+    position: relative !important;
+  }
+
+  body.matrix-theme#readme-page .readme-layout > * {
+    overflow: hidden !important;
+    contain: paint !important;
+    background-clip: padding-box !important;
+    clip-path: inset(0 round 1.6rem) !important;
+    z-index: 1 !important;
   }
 }

@@ -1,0 +1,24 @@
+/* v31 404 matrix footer balance
+   The footer itself was fine, but on the 404/readme page in matrix mode the top edge
+   read as a harder divider than on the other pages. Soften only that page so the footer
+   transition matches the rest of the site more closely. */
+
+body.matrix-theme#readme-page main {
+  margin-bottom: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+body.matrix-theme#readme-page .readme-layout {
+  margin-bottom: 1.5rem !important;
+}
+
+body.matrix-theme#readme-page .site-footer {
+  border-top: 1px solid rgba(184, 242, 152, 0.08) !important;
+  box-shadow: none !important;
+}
+
+body.matrix-theme#readme-page .site-footer::before,
+body.matrix-theme#readme-page .site-footer::after {
+  content: none !important;
+  display: none !important;
+}

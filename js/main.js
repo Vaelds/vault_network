@@ -421,6 +421,7 @@ function setupArticlePopups() {
   const articleMedia = document.getElementById('article-modal-media');
   const articleImage = document.getElementById('article-modal-image');
   const articleScroll = articleModal.querySelector('.article-modal__scroll');
+  const articleDialog = articleModal.querySelector('.article-modal__dialog');
 
   if (articleModal.parentElement !== body) {
     body.appendChild(articleModal);
@@ -511,18 +512,53 @@ function setupArticlePopups() {
       articleImage.style.objectPosition = '';
       articleMedia.hidden = true;
     }
+    articleModal.classList.remove('is-closing');
+    articleModal.classList.remove('is-visible');
+    articleModal.classList.add('is-preparing');
     articleModal.hidden = false;
     articleModal.setAttribute('aria-hidden', 'false');
     body.classList.add('article-modal-open');
     if (articleScroll) articleScroll.scrollTop = 0;
-    setTimeout(() => {
+
+    const applyOpenTrajectory = () => {
+      let offsetX = 0;
+      let offsetY = 0;
+
+      if (trigger && articleDialog && typeof trigger.getBoundingClientRect === 'function') {
+        const triggerRect = trigger.getBoundingClientRect();
+        const dialogRect = articleDialog.getBoundingClientRect();
+        const triggerCenterX = triggerRect.left + (triggerRect.width / 2);
+        const triggerCenterY = triggerRect.top + (triggerRect.height / 2);
+        const dialogCenterX = dialogRect.left + (dialogRect.width / 2);
+        const dialogCenterY = dialogRect.top + (dialogRect.height / 2);
+        offsetX = triggerCenterX - dialogCenterX;
+        offsetY = triggerCenterY - dialogCenterY;
+      }
+
+      articleModal.style.setProperty('--article-open-offset-x', `${offsetX}px`);
+      articleModal.style.setProperty('--article-open-offset-y', `${offsetY}px`);
+
+      window.requestAnimationFrame(() => {
+        articleModal.classList.remove('is-preparing');
+        articleModal.classList.add('is-visible');
+      });
+    };
+
+    window.requestAnimationFrame(applyOpenTrajectory);
+
+    window.setTimeout(() => {
       const closeButton = articleModal.querySelector('.article-modal__close');
       closeButton && closeButton.focus();
-    }, 0);
+    }, reducedMotionMQ.matches ? 0 : 2000);
   };
 
   const closeArticle = () => {
+    articleModal.classList.add('is-closing');
+    articleModal.classList.remove('is-visible');
     articleModal.hidden = true;
+    articleModal.classList.remove('is-preparing');
+    articleModal.style.removeProperty('--article-open-offset-x');
+    articleModal.style.removeProperty('--article-open-offset-y');
     articleModal.setAttribute('aria-hidden', 'true');
     body.classList.remove('article-modal-open');
     if (articleScroll) articleScroll.scrollTop = 0;
@@ -536,6 +572,9 @@ function setupArticlePopups() {
     if (previousFocus && typeof previousFocus.focus === 'function') {
       previousFocus.focus();
     }
+    window.requestAnimationFrame(() => {
+      articleModal.classList.remove('is-closing');
+    });
   };
 
   articleTriggers.forEach((trigger) => {

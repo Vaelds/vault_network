@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vault Net | Matrix spiller</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #060907;
+      --panel: rgba(8, 16, 12, 0.96);
+      --line: rgba(111, 255, 173, 0.22);
+      --text: #b9ffd5;
+      --muted: #7ecb9d;
+      --button-bg: linear-gradient(180deg, rgba(10,20,14,0.96), rgba(4,10,7,0.98));
+      --bg-top: rgba(7, 16, 11, 0.98);
+      --bg-bottom: rgba(2, 7, 4, 1);
+      --bg-flare: rgba(86,255,158,0.1);
+    }
+    body[data-ui-mode="normal"] {
+      --bg: #1a1713;
+      --panel: rgba(40, 34, 24, 0.98);
+      --line: rgba(210, 205, 150, 0.24);
+      --text: #efe9ce;
+      --muted: #d6cec2;
+      --button-bg: linear-gradient(180deg, rgba(72, 62, 44, 0.96), rgba(36, 29, 19, 0.98));
+      --bg-top: rgba(47, 39, 28, 0.98);
+      --bg-bottom: rgba(24, 19, 13, 1);
+      --bg-flare: rgba(210, 205, 150, 0.08);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background:
+        linear-gradient(180deg, var(--bg-top), var(--bg-bottom)),
+        radial-gradient(circle at top right, var(--bg-flare), transparent 42%);
+      color: var(--text);
+      font-family: Inter, Arial, sans-serif;
+      display: grid;
+      place-items: center;
+      padding: 0.9rem;
+    }
+    .player-shell {
+      width: 100%;
+      max-width: 420px;
+      display: grid;
+      gap: 0.7rem;
+      padding: 0.85rem;
+      border-radius: 1rem;
+      border: 1px solid var(--line);
+      background: var(--panel);
+      box-shadow: 0 18px 36px rgba(0,0,0,0.48), inset 0 0 0 1px rgba(255,255,255,0.03);
+    }
+    .player-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+    }
+    .eyebrow {
+      margin: 0;
+      color: rgba(201,255,240,0.88);
+      font: 700 0.68rem/1.1 Arial, sans-serif;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+    .title {
+      margin: 0.2rem 0 0;
+      font: 700 1rem/1.15 Arial, sans-serif;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+    .actions {
+      display: inline-flex;
+      gap: 0.5rem;
+    }
+    .actions button,
+    .actions a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 2.7rem;
+      height: 2.6rem;
+      padding: 0 0.85rem;
+      border-radius: 0.8rem;
+      border: 1px solid rgba(111, 255, 173, 0.2);
+      background: var(--button-bg);
+      color: var(--text);
+      text-decoration: none;
+      font: 700 0.78rem/1 Arial, sans-serif;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      cursor: pointer;
+    }
+    .status {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.8rem;
+      line-height: 1.4;
+    }
+    #spotify-host {
+      min-height: 152px;
+      border-radius: 0.9rem;
+      overflow: hidden;
+      background: rgba(3, 8, 5, 0.8);
+      border: 1px solid rgba(111, 255, 173, 0.12);
+    }
+  </style>
+</head>
+<body>
+  <section class="player-shell" aria-label="Matrix lydspor spiller">
+    <div class="player-top">
+      <div>
+        <p class="eyebrow" id="player-eyebrow">Baggrundsmusik</p>
+        <p class="title">Keep the Streets Empty for Me</p>
+      </div>
+      <div class="actions">
+        <button type="button" id="player-toggle" aria-pressed="false">Play</button>
+        <a href="https://open.spotify.com/track/1ZsUmKQt3RvaxuHVHbJlyI" target="_blank" rel="noopener noreferrer">Spotify</a>
+      </div>
+    </div>
+    <p class="status" id="player-status">Loader Spotify …</p>
+    <div id="spotify-host"></div>
+  </section>
+  <script src="js/matrix-audio-player.js"></script>
+</body>
+</html>

@@ -1820,7 +1820,7 @@ body#register {
 footer, .footer, .site-footer {
   display: flex !important;
   flex-direction: column !important;
-  justify-content: flex-start !important; /* push content to top */
+  justify-content: center !important; /* push content to top */
 }
 
 footer .container,
@@ -2103,7 +2103,7 @@ body.spotlight-enabled::after {
 .mobile-nav-panel__spotlight-toggle {
   margin-top: 0.9rem;
   display: flex;
-  justify-content: flex-start;
+  justify-content: center;
 }
 
 
@@ -2151,4 +2151,11 @@ body.spotlight-enabled::after {
   min-width: 0;
   flex: 1 1 auto;
   margin-top: 0 !important;
+}
+
+
+/* v182 base spotlight hover reinforcement */
+.spotlight-icon-button:not([hidden]):hover,
+.spotlight-icon-button:not([hidden]):focus-visible {
+  transform: scale(1.2) !important;
 }

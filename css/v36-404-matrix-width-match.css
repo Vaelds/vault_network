@@ -1,0 +1,9 @@
+/* v36
+   404 in matrix mode should align to the same shared content width as the rest
+   of the site/header, so the intro panel sits on the same horizontal rhythm as the logo. */
+
+body.matrix-theme#readme-page main,
+body.matrix-theme #readme-page main {
+  width: min(1240px, calc(100% - 2rem)) !important;
+  margin: 0 auto !important;
+}

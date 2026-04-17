@@ -1,0 +1,218 @@
+/* v35
+   - Make the separator above the footer identical on every page in both normal and matrix view.
+   - Keep the persistent Spotify companion player visible in both views, with normal bunker styling outside matrix mode. */
+
+:root {
+  --vault-footer-separator: rgba(184, 242, 152, 0.16);
+}
+
+.site-footer,
+#readme-page .site-footer,
+body.matrix-theme .site-footer,
+body.matrix-theme#readme-page .site-footer {
+  border-top: 1px solid var(--vault-footer-separator) !important;
+  box-shadow: none !important;
+}
+
+.site-footer::before,
+.site-footer::after,
+#readme-page .site-footer::before,
+#readme-page .site-footer::after,
+body.matrix-theme .site-footer::before,
+body.matrix-theme .site-footer::after {
+  display: none !important;
+  content: none !important;
+}
+
+.matrix-audio-dock {
+  position: fixed;
+  right: 1rem;
+  bottom: 1rem;
+  width: min(26rem, calc(100vw - 1.5rem));
+  display: grid;
+  gap: 0.6rem;
+  padding: 0.85rem;
+  border-radius: 1rem;
+  z-index: 6000;
+  opacity: 1;
+  transform: none;
+  pointer-events: auto;
+  transition: border-color 180ms ease, box-shadow 180ms ease, background 180ms ease;
+}
+
+.matrix-audio-dock[hidden] {
+  display: none !important;
+}
+
+.matrix-audio-dock[data-mode="normal"] {
+  border: 1px solid rgba(210, 205, 150, 0.24);
+  background:
+    linear-gradient(180deg, rgba(40, 34, 24, 0.98), rgba(23, 19, 13, 0.98)),
+    radial-gradient(circle at top right, rgba(210, 205, 150, 0.08), transparent 42%);
+  box-shadow:
+    0 18px 34px rgba(0, 0, 0, 0.28),
+    inset 0 0 0 1px rgba(255,255,255,0.03);
+}
+
+.matrix-audio-dock[data-mode="matrix"] {
+  border: 1px solid rgba(111, 255, 173, 0.18);
+  background:
+    linear-gradient(180deg, rgba(7, 16, 11, 0.96), rgba(2, 7, 4, 0.98)),
+    radial-gradient(circle at top right, rgba(86,255,158,0.09), transparent 42%);
+  box-shadow:
+    0 18px 36px rgba(0, 0, 0, 0.48),
+    inset 0 0 0 1px rgba(255,255,255,0.03),
+    inset 0 0 24px rgba(86,255,158,0.04);
+}
+
+.matrix-audio-dock__top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.matrix-audio-dock__meta {
+  min-width: 0;
+}
+
+.matrix-audio-dock__eyebrow {
+  margin: 0;
+  font: 700 0.68rem/1 var(--body-font);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.matrix-audio-dock__title {
+  margin: 0.18rem 0 0;
+  font: 700 0.98rem/1.15 var(--display-font);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.matrix-audio-dock__actions {
+  display: inline-flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 0.45rem;
+}
+
+.matrix-audio-dock__button,
+.matrix-audio-dock__open,
+.matrix-audio-dock__link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2.7rem;
+  height: 2.6rem;
+  padding: 0 0.82rem;
+  border-radius: 0.8rem;
+  text-decoration: none;
+  font: 700 0.78rem/1 var(--body-font);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: border-color 160ms ease, transform 160ms ease, box-shadow 160ms ease, background 160ms ease, color 160ms ease;
+}
+
+.matrix-audio-dock[data-mode="normal"] .matrix-audio-dock__eyebrow {
+  color: #d2cd96;
+}
+
+.matrix-audio-dock[data-mode="normal"] .matrix-audio-dock__title {
+  color: #ece7c8;
+}
+
+.matrix-audio-dock[data-mode="normal"] .matrix-audio-dock__status {
+  color: rgba(243, 239, 230, 0.82);
+}
+
+.matrix-audio-dock[data-mode="normal"] .matrix-audio-dock__hint {
+  color: rgba(214, 206, 194, 0.72);
+}
+
+.matrix-audio-dock[data-mode="normal"] .matrix-audio-dock__button,
+.matrix-audio-dock[data-mode="normal"] .matrix-audio-dock__open,
+.matrix-audio-dock[data-mode="normal"] .matrix-audio-dock__link {
+  border: 1px solid rgba(210, 205, 150, 0.24);
+  background: linear-gradient(180deg, rgba(72, 62, 44, 0.96), rgba(36, 29, 19, 0.98));
+  color: #efe9ce;
+}
+
+.matrix-audio-dock[data-mode="normal"] .matrix-audio-dock__button:hover,
+.matrix-audio-dock[data-mode="normal"] .matrix-audio-dock__button:focus-visible,
+.matrix-audio-dock[data-mode="normal"] .matrix-audio-dock__open:hover,
+.matrix-audio-dock[data-mode="normal"] .matrix-audio-dock__open:focus-visible,
+.matrix-audio-dock[data-mode="normal"] .matrix-audio-dock__link:hover,
+.matrix-audio-dock[data-mode="normal"] .matrix-audio-dock__link:focus-visible {
+  border-color: rgba(232, 225, 164, 0.42);
+  box-shadow: 0 0 0 1px rgba(232, 225, 164, 0.12), 0 0 20px rgba(0, 0, 0, 0.12);
+  transform: translateY(-1px);
+  outline: none;
+}
+
+.matrix-audio-dock[data-mode="matrix"] .matrix-audio-dock__eyebrow {
+  color: rgba(201,255,240,0.88);
+}
+
+.matrix-audio-dock[data-mode="matrix"] .matrix-audio-dock__title {
+  color: var(--matrix-text);
+}
+
+.matrix-audio-dock[data-mode="matrix"] .matrix-audio-dock__status {
+  color: var(--matrix-text-dim);
+}
+
+.matrix-audio-dock[data-mode="matrix"] .matrix-audio-dock__hint {
+  color: rgba(185, 255, 213, 0.7);
+}
+
+.matrix-audio-dock[data-mode="matrix"] .matrix-audio-dock__button,
+.matrix-audio-dock[data-mode="matrix"] .matrix-audio-dock__open,
+.matrix-audio-dock[data-mode="matrix"] .matrix-audio-dock__link {
+  border: 1px solid rgba(111, 255, 173, 0.2);
+  background: linear-gradient(180deg, rgba(10,20,14,0.96), rgba(4,10,7,0.98));
+  color: var(--matrix-text);
+}
+
+.matrix-audio-dock[data-mode="matrix"] .matrix-audio-dock__button:hover,
+.matrix-audio-dock[data-mode="matrix"] .matrix-audio-dock__button:focus-visible,
+.matrix-audio-dock[data-mode="matrix"] .matrix-audio-dock__open:hover,
+.matrix-audio-dock[data-mode="matrix"] .matrix-audio-dock__open:focus-visible,
+.matrix-audio-dock[data-mode="matrix"] .matrix-audio-dock__link:hover,
+.matrix-audio-dock[data-mode="matrix"] .matrix-audio-dock__link:focus-visible {
+  border-color: rgba(111, 255, 173, 0.38);
+  box-shadow: 0 0 0 1px rgba(86,255,158,0.14), 0 0 18px rgba(86,255,158,0.08);
+  transform: translateY(-1px);
+  outline: none;
+}
+
+.matrix-audio-dock__status {
+  margin: 0;
+  font: 500 0.76rem/1.35 var(--body-font);
+  letter-spacing: 0.03em;
+}
+
+.matrix-audio-dock__hint {
+  margin: -0.08rem 0 0;
+  font: 500 0.68rem/1.45 var(--body-font);
+  letter-spacing: 0.02em;
+}
+
+@media (max-width: 768px) {
+  .matrix-audio-dock {
+    left: 0.75rem;
+    right: 0.75rem;
+    bottom: 0.75rem;
+    width: auto;
+  }
+
+  .matrix-audio-dock__top {
+    flex-direction: column;
+  }
+
+  .matrix-audio-dock__actions {
+    justify-content: flex-start;
+  }
+}

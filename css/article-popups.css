@@ -1511,3 +1511,36 @@ button.vault-link-card.vault-article-trigger.vault-article-poster:focus-visible 
     clip-path: inset(1.05rem 0 1.05rem 0);
   }
 }
+
+
+/* v3 follow-up: open article modals from the clicked card itself */
+.article-modal {
+  --article-open-offset-x: 0px;
+  --article-open-offset-y: 0px;
+}
+
+.article-modal__dialog {
+  transform-origin: center center !important;
+}
+
+.article-modal.is-preparing .article-modal__dialog,
+.article-modal:not(.is-visible):not(.is-closing) .article-modal__dialog {
+  opacity: 0;
+  transform: translate(var(--article-open-offset-x), var(--article-open-offset-y)) scale(0.14) !important;
+}
+
+.article-modal.is-visible .article-modal__dialog {
+  opacity: 1;
+  transform: translate(0, 0) scale(1) !important;
+}
+
+.article-modal.is-closing .article-modal__dialog {
+  transform: translate(0, 0) scale(1) !important;
+}
+
+@media (max-width: 768px) {
+  .article-modal.is-preparing .article-modal__dialog,
+  .article-modal:not(.is-visible):not(.is-closing) .article-modal__dialog {
+    transform: translate(var(--article-open-offset-x), var(--article-open-offset-y)) scale(0.18) !important;
+  }
+}

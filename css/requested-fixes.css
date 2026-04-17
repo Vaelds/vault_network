@@ -292,3 +292,195 @@
 #readme-page .readme-panel > p:not(.readme-kicker) {
   color: #9ca080 !important;
 }
+
+
+/* ===== v52 matrix rollout + mobile menu stacking + popup transitions ===== */
+
+:root {
+  --vault-intro-gold: #d7cf8a;
+  --vault-intro-gold-bright: #ece4a7;
+}
+
+.site-header {
+  z-index: 4000 !important;
+}
+
+.vault-hero .eyebrow,
+.page-intro .eyebrow,
+.readme-intro-meta,
+.readme-kicker,
+.vault-article-poster__eyebrow,
+.article-modal__eyebrow {
+  color: var(--vault-intro-gold) !important;
+}
+
+body.matrix-theme .vault-hero .eyebrow,
+body.matrix-theme .page-intro .eyebrow,
+body.matrix-theme .readme-intro-meta,
+body.matrix-theme .readme-kicker,
+body.matrix-theme .vault-article-poster__eyebrow,
+body.matrix-theme .article-modal__eyebrow {
+  color: var(--vault-intro-gold-bright) !important;
+  text-shadow: 0 0 10px rgba(236, 228, 167, 0.16);
+}
+
+body.matrix-theme #logotype-wrapper .vault-brand,
+body.matrix-theme #logotype-wrapper .logo-mark.vault-brand {
+  gap: 0.18rem !important;
+  padding: 0.42rem 0.18rem !important;
+  filter: drop-shadow(0 0 16px rgba(86, 255, 158, 0.14));
+}
+
+body.matrix-theme #logotype-wrapper .vault-brand__word,
+body.matrix-theme #logotype-wrapper .logo-mark.vault-brand .vault-brand__word {
+  color: #dfffd3 !important;
+  letter-spacing: 0.12em !important;
+  text-shadow:
+    0 0 6px rgba(111, 255, 173, 0.26),
+    0 0 18px rgba(86, 255, 158, 0.12),
+    0 1px 0 rgba(0, 0, 0, 0.7) !important;
+}
+
+body.matrix-theme #logotype-wrapper .vault-brand__icon,
+body.matrix-theme #logotype-wrapper .logo-mark.vault-brand .vault-brand__icon {
+  border-radius: 0.95rem !important;
+  border: 1px solid rgba(111, 255, 173, 0.24) !important;
+  background:
+    radial-gradient(circle at center, rgba(111,255,173,0.14), rgba(7, 17, 11, 0.94) 60%),
+    linear-gradient(180deg, rgba(6, 14, 9, 0.96), rgba(2, 7, 4, 0.98)) !important;
+  box-shadow:
+    inset 0 0 0 1px rgba(255,255,255,0.03),
+    inset 0 0 26px rgba(86,255,158,0.08),
+    0 0 0 1px rgba(86,255,158,0.12),
+    0 0 18px rgba(86,255,158,0.14),
+    0 12px 24px rgba(0,0,0,0.48) !important;
+}
+
+@media (max-width: 768px) {
+  .site-header,
+  .site-header .nav-container,
+  .site-header .nav-actions,
+  .site-header .burger {
+    overflow: visible !important;
+  }
+
+  .mobile-nav-panel {
+    position: fixed !important;
+    top: calc(env(safe-area-inset-top, 0px) + 5.1rem) !important;
+    right: 0.5rem !important;
+    left: auto !important;
+    max-height: calc(100vh - 6rem) !important;
+    overflow-y: auto !important;
+    z-index: 5005 !important;
+  }
+
+  body.menu-open .site-header {
+    z-index: 5006 !important;
+  }
+
+  .nav-actions {
+    gap: 0.6rem !important;
+    flex-wrap: nowrap !important;
+  }
+
+  .nav-actions .matrix-toggle--desktop {
+    display: inline-flex !important;
+    width: 3.15rem !important;
+    min-width: 3.15rem !important;
+    height: 3.15rem !important;
+    min-height: 3.15rem !important;
+  }
+
+  .nav-actions .matrix-toggle--desktop .matrix-toggle__glyph {
+    width: 1.55rem !important;
+    height: 1.55rem !important;
+  }
+
+  .mobile-nav-panel__utility-row {
+    align-items: stretch !important;
+  }
+}
+
+.article-modal {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 2s ease, visibility 0s linear 2s;
+}
+
+.article-modal[hidden] {
+  display: grid;
+}
+
+.article-modal__backdrop {
+  opacity: 0;
+  transition: opacity 2s ease;
+}
+
+.article-modal__dialog {
+  opacity: 0;
+  transform: translateY(1.5rem) scale(0.98);
+  transition: opacity 2s ease, transform 2s ease;
+}
+
+.article-modal.is-visible {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transition: opacity 2s ease, visibility 0s linear 0s;
+}
+
+.article-modal.is-visible .article-modal__backdrop {
+  opacity: 1;
+}
+
+.article-modal.is-visible .article-modal__dialog {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.article-modal.is-closing,
+.article-modal.is-closing .article-modal__backdrop,
+.article-modal.is-closing .article-modal__dialog {
+  transition: none !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .article-modal,
+  .article-modal__backdrop,
+  .article-modal__dialog {
+    transition: none !important;
+  }
+}
+
+/* v53 request: fully remove yellow from 404 in matrix mode and match frontpage matrix palette */
+body.matrix-theme#readme-page .eyebrow,
+body.matrix-theme#readme-page .readme-kicker,
+body.matrix-theme#readme-page .readme-intro-meta {
+  color: #8fffd0 !important;
+  -webkit-text-fill-color: #8fffd0 !important;
+  text-shadow: 0 0 10px rgba(86,255,158,0.12) !important;
+}
+
+body.matrix-theme#readme-page h1,
+body.matrix-theme#readme-page .readme-panel h2,
+body.matrix-theme#readme-page .readme-summary h2 {
+  color: #cffff0 !important;
+  text-shadow: 0 0 18px rgba(86,255,158,0.08) !important;
+}
+
+body.matrix-theme#readme-page .subheading,
+body.matrix-theme#readme-page .readme-summary > p:not(.readme-kicker),
+body.matrix-theme#readme-page .readme-panel > p:not(.readme-kicker),
+body.matrix-theme#readme-page .readme-list li,
+body.matrix-theme#readme-page .readme-panel li,
+body.matrix-theme#readme-page .readme-checklist li,
+body.matrix-theme#readme-page .readme-summary li,
+body.matrix-theme#readme-page code {
+  color: var(--matrix-text-dim) !important;
+}
+
+body.matrix-theme#readme-page .readme-checklist li,
+body.matrix-theme#readme-page .readme-list li {
+  border-top-color: rgba(111,255,173,0.14) !important;
+}

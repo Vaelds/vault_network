@@ -1,0 +1,29 @@
+/* v32 404 footer match
+   Copy the footer transition from the other pages instead of inventing a 404-only variant.
+   The real mismatch was the sticky-footer gap on the shorter 404 page, which made the
+   existing top border read as a much heavier divider in both normal and matrix mode. */
+
+/* Let the 404 footer follow the content instead of being pushed to the bottom of the viewport. */
+#readme-page main {
+  flex: 0 0 auto !important;
+}
+
+#readme-page .site-footer {
+  margin-top: 0 !important;
+}
+
+/* Copy the same footer chrome the rest of the site uses. */
+#readme-page .site-footer {
+  position: relative !important;
+  padding: 1.6rem 0 1.9rem !important;
+  background:
+    linear-gradient(180deg, rgba(8, 11, 8, 0.98), rgba(5, 7, 5, 0.98)),
+    linear-gradient(135deg, rgba(184, 242, 152, 0.03), transparent 60%) !important;
+  border-top: 1px solid rgba(184, 242, 152, 0.16) !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.02) !important;
+}
+
+#readme-page .site-footer::before {
+  display: none !important;
+  content: none !important;
+}
