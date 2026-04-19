@@ -107,6 +107,21 @@ body.matrix-theme .matrix-toggle {
   outline: none;
 }
 
+body.matrix-theme .matrix-toggle:hover,
+body.matrix-theme .matrix-toggle:focus-visible,
+body.matrix-theme .matrix-toggle:active {
+  border-color: rgba(111, 255, 173, 0.62);
+  box-shadow:
+    inset 0 0 0 1px rgba(255,255,255,0.06),
+    inset 0 0 34px rgba(76,255,151,0.16),
+    0 0 0 1px rgba(86,255,158,0.24),
+    0 16px 32px rgba(0,0,0,0.58),
+    0 0 26px rgba(86,255,158,0.2);
+  transform: scale(1.15);
+  filter: brightness(1.1);
+  outline: none;
+}
+
 @media (max-width: 768px) {
   .nav-actions .matrix-toggle--desktop {
     display: none !important;
@@ -1065,4 +1080,27 @@ body.matrix-theme#readme-page .readme-summary {
     overflow: visible !important;
     background-clip: border-box !important;
   }
+}
+
+
+/* v37 restore visible matrix-button hover in matrix mode */
+body.matrix-theme .matrix-toggle:hover,
+body.matrix-theme .matrix-toggle:focus-visible,
+body.matrix-theme .nav-actions .matrix-toggle:hover,
+body.matrix-theme .nav-actions .matrix-toggle:focus-visible,
+body.matrix-theme .nav-actions .matrix-toggle--desktop:hover,
+body.matrix-theme .nav-actions .matrix-toggle--desktop:focus-visible,
+body.matrix-theme .mobile-nav-panel__utility-row .matrix-toggle:hover,
+body.matrix-theme .mobile-nav-panel__utility-row .matrix-toggle:focus-visible,
+body.matrix-theme .mobile-nav-panel__utility-row .matrix-toggle--mobile:hover,
+body.matrix-theme .mobile-nav-panel__utility-row .matrix-toggle--mobile:focus-visible {
+  transform: scale(1.15) !important;
+  border-color: rgba(111, 255, 173, 0.72) !important;
+  box-shadow:
+    inset 0 0 0 1px rgba(255,255,255,0.08),
+    inset 0 0 34px rgba(76,255,151,0.18),
+    0 0 0 1px rgba(86,255,158,0.28),
+    0 16px 32px rgba(0,0,0,0.58),
+    0 0 28px rgba(86,255,158,0.24) !important;
+  filter: brightness(1.12) !important;
 }

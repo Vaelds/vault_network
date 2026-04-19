@@ -93,66 +93,69 @@
       <p class="eyebrow">SYSTEM // CIVIL DEFENSE NETWORK</p>
       <p class="readme-intro-meta">SYSTEMLOG // README</p>
       <h1>Vault Net dokumentation</h1>
-      <p class="subheading">Projektoversigt, filstruktur og forklaring<br>af bunkerterminalens vigtigste moduler.</p>
+      <p class="subheading">Projektoversigt, filstruktur og implementeringsnoter<br>for bunkerterminalens vigtigste moduler og specialfunktioner.</p>
     </section>
 
     <section class="readme-layout">
       <article class="card-shell readme-summary">
         <p class="readme-kicker">STATUS REPORT // NETWORK SNAPSHOT</p>
         <h2>Projektstatus</h2>
-        <p>Vault Net er opbygget som en bunkerterminal med fælles header, mobilmenu,<br>alarmtilstand, interaktiv SVG-grafik, fade-baserede informationsskift, countdown-overlay<br>og formularvisning med billedanimation på indberet-siden.</p>
+        <p>Vault Net er opbygget som et fælles terminalsæt med samme header på tværs af siderne, data-attributter til de interaktive kontroller og særskilte CSS-lag til bunker-, alarm- og Matrix-udtryk. 404-siden fungerer som implementeroversigt for de centrale moduler, så man kan se både funktion og placering i filstrukturen.</p>
         <ul class="readme-checklist">
-          <li>Topmenu med hover-markering, mobilpanel og sideovergange</li>
-          <li>Interaktiv SVG med klikbare hotspots og visuel respons</li>
-          <li>Tekstfelter der fader frem, når nyt hotspot vælges</li>
-          <li>Countdown-effekt i infofeltet ved valg i grafikken</li>
-          <li>Billedanimation på indberet-siden via crossfade mellem to versioner</li>
+          <li>Topmenu med specialknapper, hover-respons og page fade mellem interne sider</li>
+          <li>Matrix mode med vedvarende state, baggrundslag og genereret code rain</li>
+          <li>Popup-artikler der åbner fra kortenes position og fyldes dynamisk via JavaScript</li>
+          <li>Vedvarende Spotify-spor med popup-spiller, statusdeling og direkte Spotify-link</li>
+          <li>Eksisterende hotspot-, countdown-, spotlight- og formularfunktioner i samme fælles system</li>
         </ul>
       </article>
 
       <article class="card-shell readme-panel">
-        <p class="readme-kicker">NAVIGATION LAYER // MOTION SYSTEMS</p>
-        <h2>Topmenu og animationer</h2>
-        <p>Topmenuen er bygget med samme bunkerdesign på alle sider. På desktop markeres menupunkter med en animeret understregning og let hover-respons, så navigationen føles aktiv uden at bryde den militære terminalstil.</p>
-        <p>På mobil åbnes menuen som et separat panel, der glider og fader ind. Panelet bruger transform og opacity, så bevægelsen virker kontrolleret og teknisk. Samtidig skjules det aktive link i mobilmenuen, så brugeren ikke bliver præsenteret for det samme sidemål igen.</p>
-        <p>Ved klik på interne links kører der desuden en kort page transition, hvor siden toner ud, før næste side åbner. Det giver et samlet flow mellem Forside, Nærkontakt, Indberet og 404-siden.</p>
+        <p class="readme-kicker">NAVIGATION LAYER // HEADER CONTROLS</p>
+        <h2>Topmenu og særlige knapper</h2>
+        <p>Headeren er bygget ens på alle sider med samme <code>nav-container</code>, samme links og en samlet <code>.nav-actions</code>-blok. Det gør, at Matrix-knappen, spotlight-kontrollen, alarmknappen og burgerknappen kan genbruges uden særskilt markup fra side til side.</p>
+        <p>De interne sideskift håndteres ikke af CSS alene. I <code>js/main.js</code> opfanges klik på interne links, <code>body</code> får klassen <code>is-page-transitioning</code>, og i <code>css/fallout.css</code> kører der en kort fade-out, før næste side åbnes. På den måde bliver navigationen en kontrolleret terminalovergang i stedet for et hårdt hop.</p>
+        <p>Matrix-knappen er ikke et ikonbillede. I <code>css/matrix-theme.css</code> tegnes selve knappen med gradienter og scanline-lag, <code>.matrix-toggle__glyph::before</code> skriver bogstavet <code>M</code>, og <code>::after</code> laver den lille lysprik, som kredser rundt om symbolet med <code>@keyframes matrixDotOrbit</code>. Hover-effekten er nu også eksplicit genskabt i Matrix mode, så knappen igen skalerer og lyser op ved roll over.</p>
       </article>
 
       <article class="info-box readme-panel">
-        <p class="readme-kicker">ALERT TIMER // COUNTDOWN DISPLAY</p>
-        <h2>Countdown-effekt</h2>
-        <p>Hver gang der vælges et nyt hotspot, aktiveres et countdown-overlay oven på infoområdet. Overlayet består af ringe, krydsmarkering, sweep-effekt, film grain og et stort nedtællingstal, der skifter fra 3 til 2 til 1.</p>
-        <p>Animationen er bevidst lavet som en gammel varslingsmonitor. Den kombinerer fade, rotation, flicker og tidsstyrede tekstskift for at signalere alarm, scanning og dataopslag. Countdownen ligger kun oven på infopanelet og påvirker ikke resten af layoutet.</p>
-      </article>
-
-      <article class="info-box readme-panel">
-        <p class="readme-kicker">DATA FEED // REVEAL SEQUENCE</p>
-        <h2>Tekst der fader frem ved klik</h2>
-        <p>Når brugeren klikker på et hotspot i SVG-grafikken, bliver informationsfelterne til højre opdateret med ny titel, beskrivelse og punktlister. Efter opdateringen tilføjes en fade-klasse, så tekstpanelerne dukker frem igen i stedet for bare at skifte øjeblikkeligt.</p>
-        <p>Fade-effekten er bygget med keyframes, opacity, vertical translate og let blur, så skiftet føles som et system, der loader nye data ind i kontrolrummet. Effekten understøtter den narrative bunkeræstetik og gør det tydeligt, at indholdet har ændret sig.</p>
+        <p class="readme-kicker">MATRIX STATE // MODE SWITCH</p>
+        <h2>Matrix mode</h2>
+        <p>Selve tilstanden styres i <code>js/matrix-theme.js</code>. Når en knap med <code>data-matrix-toggle</code> klikkes, skiftes <code>body</code>-klassen <code>matrix-theme</code>, og valget gemmes i <code>localStorage</code> under nøglen <code>vault-matrix-theme</code>. Derfor følger Matrix mode med videre, når brugeren går mellem sider.</p>
+        <p>Ved hvert state-skift synkroniseres også knappernes <code>aria-pressed</code>, titeltekst og label, så både desktop- og mobilknappen afspejler samme status. Den samme funktion opdaterer samtidig lydpanelet, så Spotify-docken automatisk skifter mellem bunker-look og Matrix-look uden separat sidekode.</p>
       </article>
 
       <article class="text-panel readme-panel">
-        <p class="readme-kicker">VECTOR MAP // INTERACTIVE HOTSPOTS</p>
-        <h2>SVG-grafik og klikbare zoner</h2>
-        <p>På Nærkontakt-siden bliver SVG-filen <code>russer_abombe.svg</code> indlæst i et object-tag. JavaScript finder de fire centrale hotspots: <code>bombe_1</code>, <code>bombe_2</code>, <code>bombe_3</code> og <code>soldat</code> samt deres alternative id-navne i filen.</p>
-        <p>Når et hotspot aktiveres, får det en tydelig glød og en aktiv markering. Bombe-zonerne har en kraftigere impact-animation med rød glow og let forskydning, mens soldat-zonen får samme kliklogik i en mere rolig version. Det gør grafikken læsbar og interaktiv uden at ændre selve SVG-filen permanent.</p>
+        <p class="readme-kicker">BACKGROUND STACK // MATRIX SCENE</p>
+        <h2>Hvordan Matrix-baggrunden er lavet</h2>
+        <p>Matrix-baggrunden består af flere lag. Først farver <code>body.matrix-theme</code> hele siden med mørke grønne gradienter. Derefter lægger <code>body.matrix-theme::before</code> scanlines og en svag tone ovenpå, mens <code>body.matrix-theme::after</code> tilføjer vignette, så kanterne bliver mørkere og midten holdes mere læsbar.</p>
+        <p>Selve den faldende kode er et separat DOM-lag og ikke et baggrundsbillede. <code>ensureRainLayer()</code> i <code>js/matrix-theme.js</code> opretter <code>.matrix-code-rain</code> med et slør-lag og en container til kolonnerne. Når laget bygges første gang, genereres der <code>span</code>-kolonner med tilfældige tegn fra <code>MATRIX_SYMBOLS</code>, forskellig længde, forskellig hastighed, forskellig opacitet og et lille vandret drift-offset.</p>
+        <p>I <code>css/matrix-theme.css</code> animeres hver kolonne med <code>@keyframes matrixCodeFall</code>, så teksten falder fra over skærmen til langt under viewporten. Regnlaget ligger på <code>z-index: 0</code>, mens header, main og footer løftes til <code>z-index: 1</code>, så effekten bliver bagved indholdet i stedet for ovenpå det.</p>
       </article>
 
       <article class="card-shell readme-panel">
-        <p class="readme-kicker">ARCHIVE VIEW // IMAGE TRANSITION</p>
-        <h2>Indberet-siden og billedanimation</h2>
-        <p>På Indberet-siden vises et arkivfoto i farve som standard. Ved hover eller fokus fades originalen ud, mens en sort-hvid version af samme motiv fades ind ovenpå. Det sker via en crossfade mellem selve billedet og en pseudo-element baggrund.</p>
-        <p>Denne animation giver siden et mere levende og dokumentarisk udtryk. Brugeren oplever, at billedet skifter karakter fra nutidig visning til arkivmateriale, uden at siden hopper eller loader på ny. Effekten er sat op med samme afrundinger og proportioner som resten af sitets framed media.</p>
+        <p class="readme-kicker">ARCHIVE CARDS // POPUP ARTICLES</p>
+        <h2>Popup-artiklerne på forsiden</h2>
+        <p>Artikelkortene på forsiden er knapper og ikke almindelige links. Hvert kort har et <code>data-article-id</code>, og markup til selve modalvinduet ligger allerede i <code>index.html</code>. Indholdet hentes ikke udefra, men fyldes ind fra <code>articleLibrary</code> i <code>js/main.js</code>, hvor titel, kicker, stempel, billede og HTML-tekst er samlet pr. artikel.</p>
+        <p>Når en artikel åbnes, flyttes modalen op under <code>body</code>, indholdet indsættes, scroll nulstilles og fokus gemmes. JavaScript måler derefter centerpunktet på det kort, der blev klikket på, og skriver forskellen til CSS-variablerne <code>--article-open-offset-x</code> og <code>--article-open-offset-y</code>. Derfor ser popupen ud til at vokse ud fra det valgte kort i stedet for bare at poppe ind midt på skærmen.</p>
+        <p>Lukning sker via backdrop, krydsknap eller <code>Escape</code>. Samtidig fjernes <code>body.article-modal-open</code>, footeren skjules kun mens modalen er åben, og fokus sendes tilbage til det kort, der åbnede artiklen. Selve udtrykket er styret i <code>css/article-popups.css</code>, hvor både plakatkort, modalpanel, scrollområde og mobiljusteringer er samlet.</p>
       </article>
 
       <article class="info-box readme-panel">
-        <p class="readme-kicker">CONTROL LAYER // SPOTLIGHT SYSTEM</p>
-        <h2>Spotlight-funktion</h2>
-        <p>Spotlight-funktionen mørklægger siden med et radialt lysfelt, som følger markøren på desktop. Effekten kan slås til og fra direkte fra topmenuen, så brugeren hurtigt kan skifte mellem normal visning og fokuslys.</p>
-        <p>På mobil bliver spotlight styret fra dropdown-menuen med samme toggle-knap, så funktionen også kan deaktiveres igen uden at forlade menuen.</p>
-        <p>Alarmknappen i headeren kan aktivere den røde alarmtilstand på tværs af sitet. Derudover håndterer formularen på Indberet-siden brugerinput direkte i browseren og skriver en opsummering til logbogen uden genindlæsning.</p>
+        <p class="readme-kicker">AUDIO LAYER // PERSISTENT TRACK</p>
+        <h2>Spotify-link og vedvarende musik</h2>
+        <p>Lydpanelet bliver oprettet dynamisk i <code>js/matrix-theme.js</code> som <code>.matrix-audio-dock</code>. Panelet indeholder en Play/Pause-knap, en <code>Spiller</code>-knap og et direkte <code>Spotify</code>-link. Spotify-linket er en almindelig ekstern <code>&lt;a&gt;</code>-reference til det konkrete track på <code>open.spotify.com</code>, så brugeren kan åbne nummeret direkte i Spotify eller browseren uden at bruge popup-spilleren.</p>
+        <p>Selve den vedvarende afspilning foregår i det separate vindue <code>matrix-audio-player.html</code>. Når der trykkes på Play, åbnes popupen, og <code>js/matrix-audio-player.js</code> loader Spotify IFrame API og opretter afspilleren med <code>spotify:track:1ZsUmKQt3RvaxuHVHbJlyI</code>. Fordi spilleren ligger i sit eget vindue, stopper nummeret ikke bare, når brugeren skifter side på sitet.</p>
+        <p>Status deles mellem sider og popup via <code>BroadcastChannel</code> og <code>localStorage</code> med nøglen <code>vault-matrix-audio-playing</code>. Det betyder, at Play/Pause-teksten, statuslinjen og mode-skiftet kan holdes synkroniseret. <code>Spiller</code>-knappen åbner eller fokuserer popup-vinduet, mens Spotify-linket alene er genvejen til tracket.</p>
       </article>
+
+      <article class="card-shell readme-panel">
+        <p class="readme-kicker">CONTROL LAYER // LIGHT AND ALERT</p>
+        <h2>Spotlight og alarm i samme kontrolsystem</h2>
+        <p>Spotlighten oprettes lazily i <code>js/main.js</code> som en separat <code>.spotlight-overlay</code>. Markørens position skrives til CSS-variablerne <code>--spotlight-x</code> og <code>--spotlight-y</code> via <code>requestAnimationFrame</code>, og overlayet bruger en radial gradient til at simulere lyskeglen. På coarse pointer eller reduceret bevægelse falder systemet tilbage til en fast spotlight-placering.</p>
+        <p>Alarmtilstanden bruger samme data-attributbaserede knapmønster som spotlighten. Klassen <code>alarm-active</code> aktiverer baggrundsoverlay og rødt udtryk, mens lyden genereres direkte i browseren med Web Audio API i stedet for at hente en ekstern lydfil. På mobil udskiftes alarmknappen samtidig visuelt med panic-knap-grafikken gennem Matrix-CSS.</p>
+      </article>
+
     </section>
   </main>
 
