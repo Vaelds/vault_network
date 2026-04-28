@@ -1544,3 +1544,120 @@ button.vault-link-card.vault-article-trigger.vault-article-poster:focus-visible 
     transform: translate(var(--article-open-offset-x), var(--article-open-offset-y)) scale(0.18) !important;
   }
 }
+
+
+/* v44 popup FLIP animation: open from clicked article card and close back to it */
+.article-modal {
+  --article-open-duration: 2000ms;
+  --article-close-duration: 1000ms;
+  --article-origin-x: 0px;
+  --article-origin-y: 0px;
+  --article-origin-scale-x: 0.18;
+  --article-origin-scale-y: 0.18;
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: none;
+}
+
+.article-modal[hidden] {
+  display: none !important;
+}
+
+.article-modal.is-measuring {
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+
+.article-modal.is-visible {
+  pointer-events: auto;
+}
+
+.article-modal.is-closing {
+  pointer-events: none;
+}
+
+.article-modal__backdrop {
+  opacity: 0;
+  transition: opacity var(--article-open-duration) ease !important;
+}
+
+.article-modal__dialog {
+  opacity: 0;
+  transform-origin: top left !important;
+  transform: translate3d(var(--article-origin-x), var(--article-origin-y), 0) scale(var(--article-origin-scale-x), var(--article-origin-scale-y)) !important;
+  transition:
+    transform var(--article-open-duration) cubic-bezier(0.16, 1, 0.3, 1),
+    opacity 420ms ease !important;
+  will-change: transform, opacity;
+}
+
+.article-modal.is-measuring .article-modal__backdrop,
+.article-modal.is-preparing .article-modal__backdrop {
+  opacity: 0 !important;
+  transition: none !important;
+}
+
+.article-modal.is-measuring .article-modal__dialog {
+  opacity: 0 !important;
+  transform: translate3d(0, 0, 0) scale(1, 1) !important;
+  transition: none !important;
+}
+
+.article-modal.is-preparing .article-modal__dialog {
+  opacity: 0 !important;
+  transform: translate3d(var(--article-origin-x), var(--article-origin-y), 0) scale(var(--article-origin-scale-x), var(--article-origin-scale-y)) !important;
+  transition: none !important;
+}
+
+.article-modal.is-visible .article-modal__backdrop {
+  opacity: 1 !important;
+  transition: opacity var(--article-open-duration) ease !important;
+}
+
+.article-modal.is-visible .article-modal__dialog {
+  opacity: 1 !important;
+  transform: translate3d(0, 0, 0) scale(1, 1) !important;
+  transition:
+    transform var(--article-open-duration) cubic-bezier(0.16, 1, 0.3, 1),
+    opacity 420ms ease !important;
+}
+
+.article-modal.is-closing .article-modal__backdrop {
+  opacity: 0 !important;
+  transition: opacity var(--article-close-duration) ease !important;
+}
+
+.article-modal.is-closing .article-modal__dialog {
+  opacity: 0 !important;
+  transform: translate3d(var(--article-origin-x), var(--article-origin-y), 0) scale(var(--article-origin-scale-x), var(--article-origin-scale-y)) !important;
+  transition:
+    transform var(--article-close-duration) cubic-bezier(0.7, 0, 0.84, 0),
+    opacity var(--article-close-duration) ease !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .article-modal,
+  .article-modal__backdrop,
+  .article-modal__dialog,
+  .article-modal.is-visible .article-modal__backdrop,
+  .article-modal.is-visible .article-modal__dialog,
+  .article-modal.is-closing .article-modal__backdrop,
+  .article-modal.is-closing .article-modal__dialog {
+    transition: none !important;
+    animation: none !important;
+  }
+}
+
+/* v44 specificity guard: override earlier :not(.is-visible) startup rules */
+.article-modal.is-measuring:not(.is-visible):not(.is-closing) .article-modal__dialog {
+  opacity: 0 !important;
+  transform: translate3d(0, 0, 0) scale(1, 1) !important;
+  transition: none !important;
+}
+
+.article-modal.is-preparing:not(.is-visible):not(.is-closing) .article-modal__dialog,
+.article-modal:not(.is-visible):not(.is-closing):not(.is-measuring):not(.is-preparing) .article-modal__dialog {
+  opacity: 0 !important;
+  transform: translate3d(var(--article-origin-x), var(--article-origin-y), 0) scale(var(--article-origin-scale-x), var(--article-origin-scale-y)) !important;
+  transition: none !important;
+}

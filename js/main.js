@@ -414,7 +414,7 @@ function setupArticlePopups() {
   const articleContent = document.getElementById('article-modal-content');
   const articleIndex = document.getElementById('article-modal-index');
   const articleStamp = document.getElementById('article-modal-stamp');
-  const articleCloseButtons = document.querySelectorAll('[data-article-close]');
+  const articleCloseButtons = articleModal ? articleModal.querySelectorAll('.article-modal__close[data-article-close]') : [];
 
   if (!articleTriggers.length || !articleModal || !articleTitle || !articleContent) return;
 
@@ -485,10 +485,99 @@ function setupArticlePopups() {
     }
   };
   let previousFocus = null;
+  let activeArticleTrigger = null;
+  let articleCloseTimer = null;
+  let articleFocusTimer = null;
+
+  const parseCssTime = (value, fallback) => {
+    const trimmed = String(value || '').trim();
+    if (!trimmed) return fallback;
+    const firstValue = trimmed.split(',')[0].trim();
+    if (firstValue.endsWith('ms')) return parseFloat(firstValue) || fallback;
+    if (firstValue.endsWith('s')) return (parseFloat(firstValue) * 1000) || fallback;
+    return parseFloat(firstValue) || fallback;
+  };
+
+  const getArticleTiming = (propertyName, fallback) => {
+    if (!articleModal || !window.getComputedStyle) return fallback;
+    return parseCssTime(window.getComputedStyle(articleModal).getPropertyValue(propertyName), fallback);
+  };
+
+  const clearArticleTimers = () => {
+    if (articleCloseTimer) {
+      window.clearTimeout(articleCloseTimer);
+      articleCloseTimer = null;
+    }
+    if (articleFocusTimer) {
+      window.clearTimeout(articleFocusTimer);
+      articleFocusTimer = null;
+    }
+  };
+
+  const setArticleTrajectoryFromTrigger = (trigger) => {
+    if (!articleDialog) return;
+
+    const dialogRect = articleDialog.getBoundingClientRect();
+    const triggerRect = trigger && typeof trigger.getBoundingClientRect === 'function'
+      ? trigger.getBoundingClientRect()
+      : null;
+
+    const safeDialogWidth = Math.max(dialogRect.width, 1);
+    const safeDialogHeight = Math.max(dialogRect.height, 1);
+    const targetRect = triggerRect && triggerRect.width > 0 && triggerRect.height > 0
+      ? triggerRect
+      : {
+        left: dialogRect.left + (dialogRect.width / 2),
+        top: dialogRect.top + (dialogRect.height / 2),
+        width: Math.max(dialogRect.width * 0.18, 1),
+        height: Math.max(dialogRect.height * 0.18, 1)
+      };
+
+    const originX = targetRect.left - dialogRect.left;
+    const originY = targetRect.top - dialogRect.top;
+    const scaleX = Math.max(targetRect.width / safeDialogWidth, 0.04);
+    const scaleY = Math.max(targetRect.height / safeDialogHeight, 0.04);
+
+    articleModal.style.setProperty('--article-origin-x', `${originX}px`);
+    articleModal.style.setProperty('--article-origin-y', `${originY}px`);
+    articleModal.style.setProperty('--article-origin-scale-x', `${scaleX}`);
+    articleModal.style.setProperty('--article-origin-scale-y', `${scaleY}`);
+  };
+
+  const resetArticleTrajectory = () => {
+    articleModal.style.removeProperty('--article-origin-x');
+    articleModal.style.removeProperty('--article-origin-y');
+    articleModal.style.removeProperty('--article-origin-scale-x');
+    articleModal.style.removeProperty('--article-origin-scale-y');
+  };
+
+  const cleanupClosedArticle = () => {
+    articleModal.hidden = true;
+    articleModal.classList.remove('is-visible', 'is-preparing', 'is-measuring', 'is-closing');
+    articleModal.setAttribute('aria-hidden', 'true');
+    body.classList.remove('article-modal-open');
+    if (articleScroll) articleScroll.scrollTop = 0;
+    articleContent.innerHTML = '';
+    delete articleModal.dataset.articleId;
+    if (articleMedia && articleImage) {
+      articleImage.src = '';
+      articleImage.alt = '';
+      articleImage.className = 'article-modal__image';
+      articleImage.style.objectPosition = '';
+      articleMedia.hidden = true;
+    }
+    resetArticleTrajectory();
+    activeArticleTrigger = null;
+    if (previousFocus && typeof previousFocus.focus === 'function') {
+      previousFocus.focus();
+    }
+  };
 
   const openArticle = (articleId, trigger) => {
     const article = articleLibrary[articleId];
-    if (!article) return;
+    if (!article || !articleDialog) return;
+    clearArticleTimers();
+    activeArticleTrigger = trigger || null;
     previousFocus = trigger || document.activeElement;
     articleKicker.textContent = article.kicker;
     articleTitle.textContent = article.title;
@@ -512,69 +601,52 @@ function setupArticlePopups() {
       articleImage.style.objectPosition = '';
       articleMedia.hidden = true;
     }
-    articleModal.classList.remove('is-closing');
-    articleModal.classList.remove('is-visible');
-    articleModal.classList.add('is-preparing');
+
     articleModal.hidden = false;
     articleModal.setAttribute('aria-hidden', 'false');
     body.classList.add('article-modal-open');
+    articleModal.classList.remove('is-visible', 'is-preparing', 'is-closing');
+    articleModal.classList.add('is-measuring');
     if (articleScroll) articleScroll.scrollTop = 0;
 
-    const applyOpenTrajectory = () => {
-      let offsetX = 0;
-      let offsetY = 0;
+    setArticleTrajectoryFromTrigger(activeArticleTrigger);
 
-      if (trigger && articleDialog && typeof trigger.getBoundingClientRect === 'function') {
-        const triggerRect = trigger.getBoundingClientRect();
-        const dialogRect = articleDialog.getBoundingClientRect();
-        const triggerCenterX = triggerRect.left + (triggerRect.width / 2);
-        const triggerCenterY = triggerRect.top + (triggerRect.height / 2);
-        const dialogCenterX = dialogRect.left + (dialogRect.width / 2);
-        const dialogCenterY = dialogRect.top + (dialogRect.height / 2);
-        offsetX = triggerCenterX - dialogCenterX;
-        offsetY = triggerCenterY - dialogCenterY;
-      }
+    articleModal.classList.remove('is-measuring');
+    articleModal.classList.add('is-preparing');
 
-      articleModal.style.setProperty('--article-open-offset-x', `${offsetX}px`);
-      articleModal.style.setProperty('--article-open-offset-y', `${offsetY}px`);
+    // Force the browser to commit the clicked-card start frame before animating to center.
+    void articleDialog.offsetWidth;
 
-      window.requestAnimationFrame(() => {
-        articleModal.classList.remove('is-preparing');
-        articleModal.classList.add('is-visible');
-      });
-    };
+    window.requestAnimationFrame(() => {
+      articleModal.classList.remove('is-preparing');
+      articleModal.classList.add('is-visible');
+    });
 
-    window.requestAnimationFrame(applyOpenTrajectory);
-
-    window.setTimeout(() => {
+    articleFocusTimer = window.setTimeout(() => {
       const closeButton = articleModal.querySelector('.article-modal__close');
       closeButton && closeButton.focus();
-    }, reducedMotionMQ.matches ? 0 : 2000);
+    }, reducedMotionMQ.matches ? 0 : getArticleTiming('--article-open-duration', 2000));
   };
 
-  const closeArticle = () => {
+  const closeArticle = (event) => {
+    if (event) {
+      event.preventDefault();
+      event.stopPropagation();
+    }
+    if (articleModal.hidden || articleModal.classList.contains('is-closing')) return;
+    clearArticleTimers();
+
+    // Recalculate the target on close so the reverse animation lands on the exact card that opened it.
+    setArticleTrajectoryFromTrigger(activeArticleTrigger || previousFocus);
+
+    articleModal.classList.remove('is-visible', 'is-preparing', 'is-measuring');
     articleModal.classList.add('is-closing');
-    articleModal.classList.remove('is-visible');
-    articleModal.hidden = true;
-    articleModal.classList.remove('is-preparing');
-    articleModal.style.removeProperty('--article-open-offset-x');
-    articleModal.style.removeProperty('--article-open-offset-y');
-    articleModal.setAttribute('aria-hidden', 'true');
-    body.classList.remove('article-modal-open');
-    if (articleScroll) articleScroll.scrollTop = 0;
-    articleContent.innerHTML = '';
-    delete articleModal.dataset.articleId;
-    if (articleMedia && articleImage) {
-      articleImage.src = '';
-      articleImage.alt = '';
-      articleMedia.hidden = true;
-    }
-    if (previousFocus && typeof previousFocus.focus === 'function') {
-      previousFocus.focus();
-    }
-    window.requestAnimationFrame(() => {
-      articleModal.classList.remove('is-closing');
-    });
+
+    const closeDuration = reducedMotionMQ.matches ? 0 : getArticleTiming('--article-close-duration', 1000);
+    articleCloseTimer = window.setTimeout(() => {
+      articleCloseTimer = null;
+      cleanupClosedArticle();
+    }, closeDuration + 80);
   };
 
   articleTriggers.forEach((trigger) => {
@@ -585,11 +657,7 @@ function setupArticlePopups() {
     button.addEventListener('click', closeArticle);
   });
 
-  document.addEventListener('keydown', (event) => {
-    if (event.key === 'Escape' && !articleModal.hidden) {
-      closeArticle();
-    }
-  });
+  // Intentionally do not close article popups on Escape; only the corner X closes them.
 }
 
 setupArticlePopups();

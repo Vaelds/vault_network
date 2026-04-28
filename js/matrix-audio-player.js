@@ -1,6 +1,6 @@
 (function () {
   const audioSessionKey = 'vault-matrix-audio-playing';
-  const spotifyTrackId = '1ZsUmKQt3RvaxuHVHbJlyI';
+  const spotifyTrackId = '64VmHbNb94yY9C55RqaSDR';
   const spotifyTrackUri = `spotify:track:${spotifyTrackId}`;
   const audioChannelName = 'vault-matrix-audio';
   const audioUiModeKey = 'vault-audio-ui-mode';
@@ -112,7 +112,7 @@
           EmbedController.addListener('playback_started', () => {
             spotifyPlaying = true;
             setButtonState(true);
-            setStatus('Nu afspilles: Fever Ray');
+            setStatus('Nu afspilles: Paula Temple – Open The Other Eye');
             broadcastStatus();
           });
 
@@ -120,7 +120,7 @@
             const paused = Boolean(event && event.data && event.data.isPaused);
             spotifyPlaying = !paused;
             setButtonState(!paused);
-            setStatus(paused ? 'Pauset.' : 'Nu afspilles: Fever Ray');
+            setStatus(paused ? 'Pauset.' : 'Nu afspilles: Paula Temple – Open The Other Eye');
             broadcastStatus();
           });
         }

@@ -2,7 +2,7 @@
   const storageKey = 'vault-matrix-theme';
   const audioSessionKey = 'vault-matrix-audio-playing';
   const audioUiModeKey = 'vault-audio-ui-mode';
-  const spotifyTrackId = '1ZsUmKQt3RvaxuHVHbJlyI';
+  const spotifyTrackId = '64VmHbNb94yY9C55RqaSDR';
   const spotifyTrackUrl = `https://open.spotify.com/track/${spotifyTrackId}`;
   const audioPlayerUrl = 'matrix-audio-player.html';
   const audioWindowName = 'vaultMatrixAudio';
@@ -160,7 +160,7 @@
       <div class="matrix-audio-dock__top">
         <div class="matrix-audio-dock__meta">
           <p class="matrix-audio-dock__eyebrow">Baggrundsmusik</p>
-          <p class="matrix-audio-dock__title">Keep the Streets Empty for Me</p>
+          <p class="matrix-audio-dock__title">Open The Other Eye</p>
         </div>
         <div class="matrix-audio-dock__actions">
           <button class="matrix-audio-dock__button" type="button" aria-pressed="false" aria-label="Afspil baggrundsmusik">Play</button>
